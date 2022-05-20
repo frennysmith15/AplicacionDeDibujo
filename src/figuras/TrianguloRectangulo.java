@@ -12,7 +12,7 @@ import java.awt.Point;
  * @author frenn
  */
 public class TrianguloRectangulo extends Figura{
-     int x;
+    int x;
     int y;
     int anchura;
     int altura;
