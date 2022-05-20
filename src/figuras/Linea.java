@@ -7,12 +7,13 @@ package figuras;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  *
  * @author josearielpereyra
  */
-public class Linea extends Figura {
+public class Linea extends FiguraRellenable {
     Point puntoInicial;
     Point puntoFinal;
 

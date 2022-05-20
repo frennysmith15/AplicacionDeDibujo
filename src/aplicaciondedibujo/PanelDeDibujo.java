@@ -4,10 +4,7 @@
  */
 package aplicaciondedibujo;
 
-import figuras.Figura;
-import figuras.Linea;
-import figuras.Pentagono;
-import figuras.Poligono;
+import figuras.*;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
@@ -68,7 +65,7 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new Rectangulo( puntoActual );
                 }
                 else if( botonPoligono.isSelected() ) {
-                    figuraActual = new Triangulo( puntoActual );
+                    figuraActual = new Poligono( puntoActual );
                 }
                 else if( botonPentagono.isSelected() ) {
                     figuraActual = new Pentagono( puntoActual );
@@ -99,6 +96,10 @@ public class PanelDeDibujo extends JPanel {
         super.paintComponent(g);
 
         for (Figura figura : figuras) {
+            if(figura instanceof FiguraRellenable) {
+                ((FiguraRellenable) figura).setFiguraActual(figura == figuraActual);
+            }
+            
             figura.dibujar(g);
         }
     }

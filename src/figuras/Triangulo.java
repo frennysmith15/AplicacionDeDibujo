@@ -7,12 +7,13 @@ package figuras;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  *
  * @author josearielpereyra
  */
-public class Triangulo extends Rectangulo {
+public abstract class Triangulo extends Rectangulo{
 
     public Triangulo(Point puntoActual ) {
         super(puntoActual);
@@ -34,7 +35,10 @@ public class Triangulo extends Rectangulo {
         g.drawPolygon(coordenadasX, coordenadasY, 3);
 
         g.setColor(Color.RED);
-        g.fillPolygon(coordenadasX, coordenadasY, 3);
+        g.drawPolygon(coordenadasX, coordenadasY, 3);
+        
+        this.setContorno(new Rectangle(x, y, anchura, altura));
+        super.dibujar(g);
     }
     
 }

@@ -6,12 +6,13 @@ package figuras;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  *
  * @author frenn
  */
-public class Escaleno extends Figura{
+public class Escaleno extends FiguraRellenable{
     int x;
     int y;
     int altura;
@@ -24,7 +25,6 @@ public class Escaleno extends Figura{
         altura = 1;
     }
         
-    
     @Override
     public void dibujar(Graphics g) {
         int x = this.anchura < 0 ? this.x + this.anchura : this.x;
@@ -37,6 +37,9 @@ public class Escaleno extends Figura{
         Point punto3 = new Point(x + anchura, y + altura);
 
         g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x}, new int[]{punto1.y, punto2.y, punto3.y}, 3);
+        
+        this.setContorno(new Rectangle(x, y, anchura, altura));
+        super.dibujar(g);
     }
 
     @Override

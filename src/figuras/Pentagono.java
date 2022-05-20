@@ -6,12 +6,13 @@ package figuras;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  *
  * @author frenn
  */
-public class Pentagono extends Figura{
+public class Pentagono extends FiguraRellenable{
     
     int x;
     int y;
@@ -40,7 +41,9 @@ public class Pentagono extends Figura{
         Point punto5 = new Point((int) (x + anchura * 0.2), y + altura);
 
         g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x, punto4.x, punto5.x}, new int[]{punto1.y, punto2.y, punto3.y, punto4.y, punto5.y}, 5);
-
+        
+        this.setContorno(new Rectangle(x, y, anchura, altura));
+        super.dibujar(g);
     }
 
     @Override

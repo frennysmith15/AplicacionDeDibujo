@@ -6,12 +6,13 @@ package figuras;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  *
  * @author frenn
  */
-public class TrianguloRectangulo extends Figura{
+public class TrianguloRectangulo extends FiguraRellenable{
     int x;
     int y;
     int anchura;
@@ -40,5 +41,8 @@ public class TrianguloRectangulo extends Figura{
         Point punto3 = new Point(x + anchura, y + altura);
 
         g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x}, new int[]{punto1.y, punto2.y, punto3.y}, 3);
+        
+        this.setContorno(new Rectangle(x, y, anchura, altura));
+        super.dibujar(g);
     }
 }
