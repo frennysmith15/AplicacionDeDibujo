@@ -5,6 +5,7 @@
 package aplicaciondedibujo;
 
 import figuras.Figura;
+import figuras.Poligono_;
 import figuras.Linea;
 import figuras.Poligono;
 import java.awt.Graphics;
@@ -38,15 +39,18 @@ public class PanelDeDibujo extends JPanel {
         
         JToggleButton botonLinea = new JToggleButton("Linea");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
+        JToggleButton botonTriangulo = new JToggleButton("Triangulo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
         
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRectangulo);
+        barraDeHerramientas.add(botonTriangulo);
         barraDeHerramientas.add(botonPoligono);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonRectangulo);
+        grupoBotones.add(botonTriangulo);
         grupoBotones.add(botonPoligono);
         
         addMouseListener( new MouseAdapter() {
@@ -62,13 +66,15 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonRectangulo.isSelected() ) {
                     figuraActual = new Rectangulo( puntoActual );
                 }
-                else if( botonPoligono.isSelected() ) {
+                else if( botonTriangulo.isSelected() ) {
                     figuraActual = new Triangulo( puntoActual );
                 }
-                
-                
-                
-                
+                else if( botonPoligono.isSelected() ) {
+                    figuraActual = new Poligono_( puntoActual );
+                }
+                else{
+                    figuraActual = new Linea( puntoActual );
+                }
                 figuras.add(figuraActual);
 
                 repaint(); 
