@@ -6,6 +6,7 @@ package aplicaciondedibujo;
 
 import figuras.Figura;
 import figuras.Linea;
+import figuras.Paralelogramo;
 import figuras.Poligono;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -38,16 +39,19 @@ public class PanelDeDibujo extends JPanel {
         
         JToggleButton botonLinea = new JToggleButton("Linea");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
-        JToggleButton botonPoligono = new JToggleButton("Poligono");
+        JToggleButton botonTriangulo = new JToggleButton("Triangulo");
+        JToggleButton botonParalelogramo = new JToggleButton("Paralelogramo");
         
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRectangulo);
-        barraDeHerramientas.add(botonPoligono);
+        barraDeHerramientas.add(botonTriangulo);
+        barraDeHerramientas.add(botonParalelogramo);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonRectangulo);
-        grupoBotones.add(botonPoligono);
+        grupoBotones.add(botonTriangulo);
+        grupoBotones.add(botonParalelogramo);
         
         addMouseListener( new MouseAdapter() {
             @Override
@@ -62,13 +66,15 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonRectangulo.isSelected() ) {
                     figuraActual = new Rectangulo( puntoActual );
                 }
-                else if( botonPoligono.isSelected() ) {
+                else if( botonTriangulo.isSelected() ) {
                     figuraActual = new Triangulo( puntoActual );
                 }
-                
-                
-                
-                
+                else if( botonParalelogramo.isSelected() ) {
+                    figuraActual = new Paralelogramo( puntoActual );
+                }
+                else {
+                    figuraActual = new Linea( puntoActual );
+                }
                 figuras.add(figuraActual);
 
                 repaint(); 
