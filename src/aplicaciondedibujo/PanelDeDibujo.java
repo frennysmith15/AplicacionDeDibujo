@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import figuras.Rectangulo;
+import figuras.Rombo;
 import figuras.Triangulo;
 import java.awt.FlowLayout;
 import javax.swing.ButtonGroup;
@@ -38,23 +39,26 @@ public class PanelDeDibujo extends JPanel {
         
         JToggleButton botonLinea = new JToggleButton("Linea");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
-        JToggleButton botonPoligono = new JToggleButton("Poligono");
+        JToggleButton botonTriangulo = new JToggleButton("Triangulo");
+        JToggleButton botonRombo = new JToggleButton("Rombo");
+
         
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRectangulo);
-        barraDeHerramientas.add(botonPoligono);
+        barraDeHerramientas.add(botonTriangulo);
+        barraDeHerramientas.add(botonRombo);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonRectangulo);
-        grupoBotones.add(botonPoligono);
+        grupoBotones.add(botonTriangulo);
+        grupoBotones.add(botonRombo);
         
         addMouseListener( new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 Point puntoActual = e.getPoint();
-                
-                
+
                 //decidir la figura que se va a dibujar
                 if( botonLinea.isSelected() ) {
                     figuraActual = new Linea( puntoActual );
@@ -62,13 +66,15 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonRectangulo.isSelected() ) {
                     figuraActual = new Rectangulo( puntoActual );
                 }
-                else if( botonPoligono.isSelected() ) {
+                else if( botonTriangulo.isSelected() ) {
                     figuraActual = new Triangulo( puntoActual );
                 }
-                
-                
-                
-                
+                else if( botonRombo.isSelected() ) {
+                    figuraActual = new Rombo( puntoActual );
+                }
+                else{
+                    figuraActual = new Linea( puntoActual );
+                }
                 figuras.add(figuraActual);
 
                 repaint(); 
