@@ -4,8 +4,9 @@
  */
 package aplicaciondedibujo;
 
-import figuras.Estrella;
+
 import figuras.Figura;
+import figuras.Flecha;
 import figuras.Linea;
 import figuras.Poligono;
 import java.awt.Graphics;
@@ -40,18 +41,18 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonLinea = new JToggleButton("Linea");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
-        JToggleButton botonEstrella = new JToggleButton("Estrella");
+        JToggleButton botonFlecha = new JToggleButton("Flecha");
         
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRectangulo);
         barraDeHerramientas.add(botonPoligono);
-        barraDeHerramientas.add(botonEstrella);
+        barraDeHerramientas.add(botonFlecha);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonRectangulo);
         grupoBotones.add(botonPoligono);
-        grupoBotones.add(botonEstrella);
+        grupoBotones.add(botonFlecha);
         
         addMouseListener( new MouseAdapter() {
             @Override
@@ -69,8 +70,8 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonPoligono.isSelected() ) {
                     figuraActual = new Poligono(puntoActual );
                 }
-                else if( botonEstrella.isSelected() ) {
-                    figuraActual = new Estrella(puntoActual );
+                else if( botonFlecha.isSelected() ) {
+                    figuraActual = new Flecha(puntoActual );
                 }
                 
                 
