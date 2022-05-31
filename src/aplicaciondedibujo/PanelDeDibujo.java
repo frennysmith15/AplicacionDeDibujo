@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Stack;
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -35,8 +36,23 @@ public class PanelDeDibujo extends JPanel implements ActionListener{
 
     Figura figuraActual;
     ArrayList<Figura> figuras = new ArrayList<>();
+    Stack<Figura> figurasDeshacer = new Stack<>();
     JPanel barraDeHerramientas;
     File archivo;
+    
+    public void rehacer() {
+        if(!figurasDeshacer.isEmpty()) {
+            figuras.add(figurasDeshacer.pop());
+            repaint();
+        }
+    }
+    
+    public void deshacer() {
+        if(!figuras.isEmpty()) {
+            figurasDeshacer.push(figuras.remove(figuras.size() - 1));
+            repaint();
+        }
+    }
     
     public void guardar() {
         try {
@@ -134,6 +150,24 @@ public class PanelDeDibujo extends JPanel implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 guardarComo();
+                
+                repaint();
+            }
+        });
+        
+        botonRehacer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                rehacer();
+                
+                repaint();
+            }
+        });
+        
+        botonDeshacer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                deshacer();
                 
                 repaint();
             }
