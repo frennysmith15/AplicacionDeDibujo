@@ -6,6 +6,7 @@ package aplicaciondedibujo;
 
 import figuras.Figura;
 import figuras.Linea;
+import figuras.Pacman;
 import figuras.Poligono;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -38,16 +39,19 @@ public class PanelDeDibujo extends JPanel {
         
         JToggleButton botonLinea = new JToggleButton("Linea");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
-        JToggleButton botonPoligono = new JToggleButton("Poligono");
+        JToggleButton botonTriangulo = new JToggleButton("Triangulo");
+        JToggleButton botonPacman = new JToggleButton("Pacman");
         
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRectangulo);
-        barraDeHerramientas.add(botonPoligono);
+        barraDeHerramientas.add(botonTriangulo);
+        barraDeHerramientas.add(botonPacman);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonRectangulo);
-        grupoBotones.add(botonPoligono);
+        grupoBotones.add(botonTriangulo);
+        grupoBotones.add(botonPacman);
         
         addMouseListener( new MouseAdapter() {
             @Override
@@ -62,12 +66,12 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonRectangulo.isSelected() ) {
                     figuraActual = new Rectangulo( puntoActual );
                 }
-                else if( botonPoligono.isSelected() ) {
+                else if( botonTriangulo.isSelected() ) {
                     figuraActual = new Triangulo( puntoActual );
                 }
-                
-                
-                
+                else if( botonPacman.isSelected() ) {
+                    figuraActual = new Pacman( puntoActual );
+                }
                 
                 figuras.add(figuraActual);
 
