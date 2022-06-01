@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import figuras.Rectangulo;
+import figuras.SemiCirculo;
 import figuras.Triangulo;
 import java.awt.FlowLayout;
 import javax.swing.ButtonGroup;
@@ -41,17 +42,20 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
         JToggleButton botonTriangulo = new JToggleButton("Triangulo");
         JToggleButton botonDibujoLibre = new JToggleButton("Lapiz");
+        JToggleButton botonSemiCirculo = new JToggleButton("SemiCirculo");
         
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRectangulo);
         barraDeHerramientas.add(botonTriangulo);
         barraDeHerramientas.add(botonDibujoLibre);
+        barraDeHerramientas.add(botonSemiCirculo);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonRectangulo);
         grupoBotones.add(botonTriangulo);
         grupoBotones.add(botonDibujoLibre);
+        grupoBotones.add(botonSemiCirculo);
         
         addMouseListener( new MouseAdapter() {
             @Override
@@ -71,6 +75,9 @@ public class PanelDeDibujo extends JPanel {
                 }
                 else if( botonDibujoLibre.isSelected() ) {
                     figuraActual = new DibujoLibre( puntoActual );
+                }
+                else if( botonSemiCirculo.isSelected() ) {
+                    figuraActual = new SemiCirculo( puntoActual );
                 }
                 else {
                     figuraActual = new DibujoLibre( puntoActual );
