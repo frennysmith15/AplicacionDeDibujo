@@ -13,7 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-
+import figuras.TrianguloRectangulo;
 import figuras.Rectangulo;
 import figuras.Triangulo;
 import java.awt.FlowLayout;
@@ -39,22 +39,23 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonLinea = new JToggleButton("Linea");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
+        JToggleButton botonTrianguloRectangulo = new JToggleButton("TrianguloRectangulo");
         
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRectangulo);
         barraDeHerramientas.add(botonPoligono);
+        barraDeHerramientas.add(botonTrianguloRectangulo);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonRectangulo);
         grupoBotones.add(botonPoligono);
+        grupoBotones.add(botonTrianguloRectangulo);
         
         addMouseListener( new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 Point puntoActual = e.getPoint();
-                
-                
                 //decidir la figura que se va a dibujar
                 if( botonLinea.isSelected() ) {
                     figuraActual = new Linea( puntoActual );
@@ -65,10 +66,10 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonPoligono.isSelected() ) {
                     figuraActual = new Triangulo( puntoActual );
                 }
-                
-                
-                
-                
+                else if( botonTrianguloRectangulo.isSelected() ) {
+                    figuraActual = new TrianguloRectangulo( puntoActual );
+                }
+
                 figuras.add(figuraActual);
 
                 repaint(); 
