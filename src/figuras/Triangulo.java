@@ -14,10 +14,10 @@ import java.awt.Point;
  */
 public class Triangulo extends Rectangulo {
 
-    public Triangulo(Point puntoActual ) {
-        super(puntoActual);
+    public Triangulo(Point puntoActual, Color colorDePrimerPlano, Color colorDeSegundoPlano) {
+        super(puntoActual, colorDePrimerPlano, colorDeSegundoPlano);
     }
-   
+
 
     @Override
     public void dibujar(Graphics g) {
@@ -30,10 +30,10 @@ public class Triangulo extends Rectangulo {
        int[] coordenadasY = {y + altura, y, y + altura};
        
         
-        g.setColor(Color.GREEN);
+        g.setColor(getColorDePrimerPlano());
         g.drawPolygon(coordenadasX, coordenadasY, 3);
 
-        g.setColor(Color.RED);
+        g.setColor(getColorDeSegundoPlano());
         g.fillPolygon(coordenadasX, coordenadasY, 3);
     }
     

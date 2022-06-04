@@ -4,6 +4,7 @@
  */
 package figuras;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
@@ -18,6 +19,7 @@ public class Poligono extends Figura{
     boolean terminado;
 
     public Poligono( Point puntoActual ) {
+        super(Color.darkGray, Color.green);
         puntos = new ArrayList<>();
         puntos.add(puntoActual);
         terminado = false;

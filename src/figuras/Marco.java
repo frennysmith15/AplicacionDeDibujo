@@ -11,7 +11,7 @@ import java.awt.Point;
  *
  * @author josearielpereyra
  */
-class Marco extends Figura{
+class Marco{
     private Rectangulo contorno;
     private boolean visible;
     
@@ -19,12 +19,12 @@ class Marco extends Figura{
         this.visible = visible;
     }
     
-    @Override
+   
     public void dibujar(Graphics g) {
         
     }
 
-    @Override
+    
     public void actualizar(Point puntoActual) {
         
     }

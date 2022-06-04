@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package figuras;
-
+import aplicaciondedibujo.PanelDeDibujo;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -22,7 +22,8 @@ public class Rectangulo extends Figura {
     
     protected Rectangle rectangulo;
 
-    public Rectangulo(Point ubicacion) {
+    public Rectangulo(Point ubicacion ,Color ColorDePrimerPlano, Color ColorDeSegundoPlano) {
+        super(ColorDePrimerPlano, ColorDeSegundoPlano);
         this.x = ubicacion.x;
         this.y = ubicacion.y;
         this.anchura = 1;
@@ -36,10 +37,10 @@ public class Rectangulo extends Figura {
         int anchura = rectangulo.width;
         int altura = rectangulo.height;
         
-        g.setColor(Color.GREEN);
+        g.setColor(getColorDePrimerPlano());
         g.drawRect(x, y, anchura, altura);
 
-        g.setColor(Color.RED);
+        g.setColor(getColorDeSegundoPlano());
         g.fillRect(x, y, anchura, altura);
     }
 

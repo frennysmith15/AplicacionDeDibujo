@@ -7,19 +7,17 @@ package aplicaciondedibujo;
 import figuras.Figura;
 import figuras.Linea;
 import figuras.Poligono;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import figuras.Rectangulo;
 import figuras.Triangulo;
-import java.awt.FlowLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JToggleButton;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.*;
 
 /**
  *
@@ -30,62 +28,79 @@ public class PanelDeDibujo extends JPanel {
     Figura figuraActual;
     ArrayList<Figura> figuras = new ArrayList<>();
     JPanel barraDeHerramientas;
-    
+    public Color colorDePrimerPlano;
+    public Color colorDeSegundoPlano;
+
     public PanelDeDibujo() {
-        
+
         barraDeHerramientas = new JPanel();
-        barraDeHerramientas.setLayout(new FlowLayout( FlowLayout.LEFT));
-        
+        barraDeHerramientas.setLayout(new FlowLayout(FlowLayout.LEFT));
+
         JToggleButton botonLinea = new JToggleButton("Linea");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
-        JToggleButton botonPoligono = new JToggleButton("Poligono");
-        
+        JToggleButton botonTriangulo = new JToggleButton("Triangulo");
+        JToggleButton botonSelecionarColor = new JToggleButton("SelecionarColor");
+
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRectangulo);
-        barraDeHerramientas.add(botonPoligono);
-        
+        barraDeHerramientas.add(botonTriangulo);
+        barraDeHerramientas.add(botonSelecionarColor);
+
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonRectangulo);
-        grupoBotones.add(botonPoligono);
+        grupoBotones.add(botonTriangulo);
+        grupoBotones.add(botonSelecionarColor);
         
-        addMouseListener( new MouseAdapter() {
+        //Evento de button selecionar colores
+        ActionListener ActionButoon = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            
+            colorDePrimerPlano = JColorChooser.showDialog(null, "Seleccione el color del contorno", colorDePrimerPlano);
+            colorDeSegundoPlano = JColorChooser.showDialog(null, "Seleccione el color del interior", colorDeSegundoPlano);
+
+            }
+        };
+        botonSelecionarColor.addActionListener(ActionButoon);
+
+        addMouseListener(
+                new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 Point puntoActual = e.getPoint();
-                
-                
-                //decidir la figura que se va a dibujar
-                if( botonLinea.isSelected() ) {
-                    figuraActual = new Linea( puntoActual );
-                }
-                else if( botonRectangulo.isSelected() ) {
-                    figuraActual = new Rectangulo( puntoActual );
-                }
-                else if( botonPoligono.isSelected() ) {
-                    figuraActual = new Triangulo( puntoActual );
-                }
-                
-                
-                
-                
-                figuras.add(figuraActual);
 
-                repaint(); 
+                //decidir la figura que se va a dibujar
+                if (botonLinea.isSelected()) {
+                    figuraActual = new Linea(puntoActual ,colorDePrimerPlano);
+                } else if (botonRectangulo.isSelected()) {
+                    figuraActual = new Rectangulo(puntoActual,colorDePrimerPlano, colorDeSegundoPlano);
+                } else if (botonTriangulo.isSelected()) {
+                    figuraActual = new Triangulo(puntoActual,colorDePrimerPlano, colorDeSegundoPlano);
+                }else {
+                    figuraActual = new Linea(puntoActual,colorDePrimerPlano);
+                }
+                figuras.add(figuraActual);
+                repaint();
+
             }
-        });
-        
-        addMouseMotionListener( new MouseAdapter() {
+        }
+        );
+
+        addMouseMotionListener(
+                new MouseAdapter() {
             @Override
-            public void mouseDragged(MouseEvent e) {
+            public void mouseDragged(MouseEvent e
+            ) {
                 Point puntoActual = e.getPoint();
-                figuraActual.actualizar( puntoActual );
-                
+                figuraActual.actualizar(puntoActual);
+
                 repaint();
             }
-        });
+        }
+        );
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -94,8 +109,9 @@ public class PanelDeDibujo extends JPanel {
             figura.dibujar(g);
         }
     }
-    
+
     public JPanel getBaraDeHerramientas() {
         return barraDeHerramientas;
     }
+
 }
