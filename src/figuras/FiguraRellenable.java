@@ -15,11 +15,10 @@ import java.awt.Point;
 public class FiguraRellenable extends Figura{
     
     protected Color colorDeFondo;
-    protected Color colorDeContorno;
     protected Boolean relleno;
 
     public FiguraRellenable(Color colorDeFondo, Color colorDeContorno, Boolean relleno){
-        this.colorDeContorno = colorDeContorno;
+        super.colorDeContorno = colorDeContorno;
         this.colorDeFondo = colorDeFondo;
         this.relleno = relleno;
     }
