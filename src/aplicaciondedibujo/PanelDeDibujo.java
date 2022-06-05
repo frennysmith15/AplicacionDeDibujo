@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import figuras.Rectangulo;
+import figuras.Trapecio;
 import figuras.Triangulo;
 import java.awt.FlowLayout;
 import javax.swing.ButtonGroup;
@@ -39,20 +40,23 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonLinea = new JToggleButton("Linea");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
+        JToggleButton botonTrapecio = new JToggleButton("Trapecio");
         
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRectangulo);
-        barraDeHerramientas.add(botonPoligono);
+        barraDeHerramientas.add(botonTrapecio);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonRectangulo);
         grupoBotones.add(botonPoligono);
         
+        grupoBotones.add(botonTrapecio);
         addMouseListener( new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 Point puntoActual = e.getPoint();
+                
                 
                 
                 //decidir la figura que se va a dibujar
@@ -65,7 +69,9 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonPoligono.isSelected() ) {
                     figuraActual = new Triangulo( puntoActual );
                 }
-                
+                  else if( botonTrapecio.isSelected() ) {
+                    figuraActual = new Trapecio( puntoActual );
+                }
                 
                 
                 
