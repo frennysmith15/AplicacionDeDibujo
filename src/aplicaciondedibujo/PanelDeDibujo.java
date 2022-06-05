@@ -4,7 +4,9 @@
  */
 package aplicaciondedibujo;
 
+import figuras.Escaleno;
 import figuras.Figura;
+import figuras.Hexagono;
 import figuras.Linea;
 import figuras.Pentagono;
 import figuras.Poligono;
@@ -17,6 +19,8 @@ import javax.swing.JPanel;
 
 import figuras.Rectangulo;
 import figuras.Triangulo;
+import figuras.TrianguloRectangulo;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -39,20 +43,33 @@ public class PanelDeDibujo extends JPanel {
         
         JToggleButton botonLinea = new JToggleButton("Linea");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
-        JToggleButton botonPoligono = new JToggleButton("Poligono");
+        JToggleButton botonTriangulo = new JToggleButton("Triangulo");
         JToggleButton botonPentagono = new JToggleButton("Pentagono");
+        JToggleButton botonHexagono = new JToggleButton("Hexagono");
+        JToggleButton botonEscaleno = new JToggleButton("Escaleno");
+        JToggleButton botonTrianguloRectangulo = new JToggleButton("Triangulo Rectangulo");
 
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRectangulo);
-        barraDeHerramientas.add(botonPoligono);
+        barraDeHerramientas.add(botonTriangulo);
         barraDeHerramientas.add(botonPentagono);
+        barraDeHerramientas.add(botonHexagono);
+        barraDeHerramientas.add(botonEscaleno);
+        barraDeHerramientas.add(botonTrianguloRectangulo);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonRectangulo);
-        grupoBotones.add(botonPoligono);
+        grupoBotones.add(botonTriangulo);
         grupoBotones.add(botonPentagono);
+        grupoBotones.add(botonHexagono);
+        grupoBotones.add(botonEscaleno);
+        grupoBotones.add(botonTrianguloRectangulo);
+        
+        Color colorDeContorno = Color.red;
+        Color colorDeFondo = Color.black;
 
+        
         
         addMouseListener( new MouseAdapter() {
             @Override
@@ -65,16 +82,23 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new Linea( puntoActual );
                 }
                 else if( botonRectangulo.isSelected() ) {
-                //    figuraActual = new Rectangulo( puntoActual );
+                    figuraActual = new Rectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
-                else if( botonPoligono.isSelected() ) {
-                    figuraActual = new Triangulo( puntoActual );
+                else if(botonTriangulo.isSelected() ) {
+                    figuraActual = new Triangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonPentagono.isSelected() ) {
-                    figuraActual = new Pentagono( puntoActual );
+                   figuraActual = new Pentagono(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
-                
-                
+                else if( botonHexagono.isSelected() ) {
+                   figuraActual = new Hexagono(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                }
+                else if( botonEscaleno.isSelected() ) {
+                   figuraActual = new Escaleno(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                }
+                else if( botonTrianguloRectangulo.isSelected() ) {
+                   figuraActual = new TrianguloRectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                }
                 
                 
                 figuras.add(figuraActual);

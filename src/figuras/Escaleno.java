@@ -4,6 +4,7 @@
  */
 package figuras;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -11,15 +12,16 @@ import java.awt.Point;
  *
  * @author frenn
  */
-public class Escaleno extends Figura{
+public class Escaleno extends FiguraRellenable{
     int x;
     int y;
     int altura;
     int anchura;
     
-    public Escaleno(Point ubicacion) {
-        this.x = ubicacion.x;
-        this.y = ubicacion.y;
+    public Escaleno( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
+        super(colorDeFondo, colorDeContorno, relleno);
+        this.x = puntoActual.x;
+        this.y = puntoActual.y;
         anchura = 1;
         altura = 1;
     }
@@ -35,8 +37,14 @@ public class Escaleno extends Figura{
         Point punto1 = new Point((int) (x + anchura * 0.30), y + altura);
         Point punto2 = new Point(x, y);
         Point punto3 = new Point(x + anchura, y + altura);
-
+        
+        g.setColor(colorDeContorno);
         g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x}, new int[]{punto1.y, punto2.y, punto3.y}, 3);
+        
+        if(relleno) {
+            g.setColor(colorDeFondo);
+            g.fillPolygon(new int[]{punto1.x, punto2.x, punto3.x}, new int[]{punto1.y, punto2.y, punto3.y}, 3);
+        }
     }
 
     @Override

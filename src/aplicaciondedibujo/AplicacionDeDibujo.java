@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +35,17 @@ public class AplicacionDeDibujo extends JFrame{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+          if ( "Nimbus".equals(info.getName())) {
+            javax.swing.UIManager.setLookAndFeel(info.getClassName());
+          }
+        }
+      } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "No se pudo cambiar la apariencia visual");
+      }
+        
         AplicacionDeDibujo aplicacionDeDibujo = new AplicacionDeDibujo();
         aplicacionDeDibujo.setVisible(true);
     }
