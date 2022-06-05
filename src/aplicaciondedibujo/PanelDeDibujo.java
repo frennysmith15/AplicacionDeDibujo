@@ -65,7 +65,7 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new Linea( puntoActual );
                 }
                 else if( botonRectangulo.isSelected() ) {
-                    figuraActual = new Rectangulo( puntoActual );
+                //    figuraActual = new Rectangulo( puntoActual );
                 }
                 else if( botonPoligono.isSelected() ) {
                     figuraActual = new Triangulo( puntoActual );
