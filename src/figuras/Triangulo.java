@@ -36,14 +36,15 @@ public class Triangulo extends FiguraRellenable{
        int[] coordenadasX = {x, x + anchura/2, x + anchura};
        int[] coordenadasY = {y + altura, y, y + altura};
        
-        
-        g.setColor(colorDeContorno);
-        g.drawPolygon(coordenadasX, coordenadasY, 3);
-
         if(relleno) {
             g.setColor(colorDeFondo);
             g.fillPolygon(coordenadasX, coordenadasY, 3);
         }
+        
+        g.setColor(colorDeContorno);
+        g.drawPolygon(coordenadasX, coordenadasY, 3);
+
+        
     }
     
     @Override

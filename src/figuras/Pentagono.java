@@ -41,13 +41,15 @@ public class Pentagono extends FiguraRellenable{
         Point punto4 = new Point((int) (x + anchura * 0.8), y + altura);
         Point punto5 = new Point((int) (x + anchura * 0.2), y + altura);
 
-        g.setColor(colorDeContorno);
-        g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x, punto4.x, punto5.x}, new int[]{punto1.y, punto2.y, punto3.y, punto4.y, punto5.y}, 5);
-        
         if(relleno) {
             g.setColor(colorDeFondo);
             g.fillPolygon(new int[]{punto1.x, punto2.x, punto3.x, punto4.x, punto5.x}, new int[]{punto1.y, punto2.y, punto3.y, punto4.y, punto5.y}, 5);
         }
+        
+        g.setColor(colorDeContorno);
+        g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x, punto4.x, punto5.x}, new int[]{punto1.y, punto2.y, punto3.y, punto4.y, punto5.y}, 5);
+        
+        
         
     }
 

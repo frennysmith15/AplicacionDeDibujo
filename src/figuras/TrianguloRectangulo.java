@@ -41,12 +41,12 @@ public class TrianguloRectangulo extends FiguraRellenable{
         Point punto2 = new Point(x, y);
         Point punto3 = new Point(x + anchura, y + altura);
 
-        g.setColor(colorDeContorno);
-        g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x}, new int[]{punto1.y, punto2.y, punto3.y}, 3);
-        
         if(relleno) {
             g.setColor(colorDeFondo);
             g.fillPolygon(new int[]{punto1.x, punto2.x, punto3.x}, new int[]{punto1.y, punto2.y, punto3.y}, 3);
         }
+        
+        g.setColor(colorDeContorno);
+        g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x}, new int[]{punto1.y, punto2.y, punto3.y}, 3);
     }
 }

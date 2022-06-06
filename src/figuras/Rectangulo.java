@@ -36,14 +36,15 @@ public class Rectangulo extends FiguraRellenable {
         int y = rectangulo.y;
         int anchura = rectangulo.width;
         int altura = rectangulo.height;
-        
-        g.setColor(colorDeContorno);
-        g.drawRect(x, y, anchura, altura);
 
         if(relleno) {
             g.setColor(colorDeFondo);
             g.fillRect(x, y, anchura, altura);
         }
+        
+        g.setColor(colorDeContorno);
+        g.drawRect(x, y, anchura, altura);
+
         
     }
 
