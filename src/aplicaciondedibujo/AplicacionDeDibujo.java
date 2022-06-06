@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 public class AplicacionDeDibujo extends JFrame{
     
     PanelDeDibujo panelDeDibujo;
+    BarraMenu barraDeMenu;
     
     public AplicacionDeDibujo() throws HeadlessException {
         setTitle("Aplicacion de Dibujo");
@@ -26,9 +27,11 @@ public class AplicacionDeDibujo extends JFrame{
         
         panelDeDibujo = new PanelDeDibujo();
         panelDeDibujo.setBackground(Color.WHITE);
+        barraDeMenu = new BarraMenu();
         
         this.add(panelDeDibujo.getBaraDeHerramientas(), BorderLayout.NORTH);
         this.add(panelDeDibujo, BorderLayout.CENTER);
+        this.setJMenuBar(barraDeMenu);
     }
     
     /**
