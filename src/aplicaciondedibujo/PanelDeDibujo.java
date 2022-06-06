@@ -79,7 +79,7 @@ public class PanelDeDibujo extends JPanel {
                 
                 //decidir la figura que se va a dibujar
                 if( botonLinea.isSelected() ) {
-                    figuraActual = new Linea( puntoActual );
+                    figuraActual = new Linea( puntoActual, colorDeContorno );
                 }
                 else if( botonRectangulo.isSelected() ) {
                     figuraActual = new Rectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
