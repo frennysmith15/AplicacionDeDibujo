@@ -4,6 +4,7 @@
  */
 package aplicaciondedibujo;
 
+import figuras.Elipse;
 import figuras.Escaleno;
 import figuras.Figura;
 import figuras.Hexagono;
@@ -48,6 +49,7 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonHexagono = new JToggleButton("Hexagono");
         JToggleButton botonEscaleno = new JToggleButton("Escaleno");
         JToggleButton botonTrianguloRectangulo = new JToggleButton("Triangulo Rectangulo");
+        JToggleButton botonElipse = new JToggleButton("Elipse");
 
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRectangulo);
@@ -56,6 +58,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonHexagono);
         barraDeHerramientas.add(botonEscaleno);
         barraDeHerramientas.add(botonTrianguloRectangulo);
+        barraDeHerramientas.add(botonElipse);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
@@ -65,7 +68,9 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonHexagono);
         grupoBotones.add(botonEscaleno);
         grupoBotones.add(botonTrianguloRectangulo);
-        
+        grupoBotones.add(botonElipse);
+
+
         Color colorDeContorno = Color.red;
         Color colorDeFondo = Color.black;
 
@@ -98,6 +103,9 @@ public class PanelDeDibujo extends JPanel {
                 }
                 else if( botonTrianguloRectangulo.isSelected() ) {
                    figuraActual = new TrianguloRectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                }
+                else if( botonElipse.isSelected() ) {
+                   figuraActual = new Elipse(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 
                 
