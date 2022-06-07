@@ -20,8 +20,8 @@ public class BarraMenu extends JMenuBar{
     JMenuItem copiar, pegar, eliminar;
     
     public BarraMenu() {
-        JMenu menuArchivo = new JMenu("Archivo");
-        JMenu menuEdicion = new JMenu("Edicion");
+        menuArchivo = new JMenu("Archivo");
+        menuEdicion = new JMenu("Edicion");
         
         abrir = new JMenuItem("Abrir");
         cerrar = new JMenuItem("Cerrar");
@@ -31,6 +31,8 @@ public class BarraMenu extends JMenuBar{
         copiar = new JMenuItem("Copiar");
         pegar = new JMenuItem("Pegar");
         eliminar = new JMenuItem("Eliminar");
+        
+        //mAopcSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
         
         menuArchivo.add(abrir);
         menuArchivo.add(cerrar);
