@@ -7,6 +7,7 @@ package figuras;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  *
@@ -48,7 +49,9 @@ public class Hexagono extends FiguraRellenable{
         
         g.setColor(colorDeContorno);
         g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x, punto4.x, punto5.x, punto6.x}, new int[]{punto1.y, punto2.y, punto3.y, punto4.y, punto5.y, punto6.y}, 6);
-            
+        
+        this.setContorno(new Rectangle(x, y, anchura, altura));
+        super.dibujar(g);
     }
 
     @Override

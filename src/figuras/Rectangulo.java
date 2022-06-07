@@ -45,7 +45,8 @@ public class Rectangulo extends FiguraRellenable {
         g.setColor(colorDeContorno);
         g.drawRect(x, y, anchura, altura);
 
-        
+        this.setContorno(new Rectangle(x, y, anchura, altura));
+        super.dibujar(g);
     }
 
     public void actualizar(Point puntoActual) {

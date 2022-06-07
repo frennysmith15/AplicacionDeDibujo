@@ -44,7 +44,8 @@ public class Triangulo extends FiguraRellenable{
         g.setColor(colorDeContorno);
         g.drawPolygon(coordenadasX, coordenadasY, 3);
 
-        
+        this.setContorno(new Rectangle(x, y, anchura, altura));
+        super.dibujar(g);
     }
     
     @Override
