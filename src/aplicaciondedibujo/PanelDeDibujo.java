@@ -201,9 +201,9 @@ public class PanelDeDibujo extends JPanel {
         super.paintComponent(g);
 
         for (Figura figura : figuras) {
-            /*if(figura instanceof FiguraRellenable) {
+            if(figura instanceof FiguraRellenable) {
                 ((FiguraRellenable) figura).setFiguraActual(figura == figuraActual);
-            }*/
+            }
             
             figura.dibujar(g);
         }

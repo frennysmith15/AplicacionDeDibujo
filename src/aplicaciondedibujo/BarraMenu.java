@@ -86,9 +86,6 @@ public class BarraMenu extends JMenuBar{
             public void actionPerformed(ActionEvent e) {
                 panelDeDibujo.deshacer();
             }
-        });
-                
+        });      
     }
-    
-    
 }
