@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class AplicacionDeDibujo extends JFrame{
     
-    PanelDeDibujo panelDeDibujo;
+    public static PanelDeDibujo panelDeDibujo;
     BarraMenu barraDeMenu;
     
     public AplicacionDeDibujo() throws HeadlessException {
@@ -51,5 +51,9 @@ public class AplicacionDeDibujo extends JFrame{
         
         AplicacionDeDibujo aplicacionDeDibujo = new AplicacionDeDibujo();
         aplicacionDeDibujo.setVisible(true);
+    }
+    
+    public PanelDeDibujo getPanelDeDibujo(){
+        return panelDeDibujo;
     }
 }

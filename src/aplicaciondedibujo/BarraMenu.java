@@ -18,14 +18,14 @@ import javax.swing.JMenuItem;
  * @author frenn
  */
 public class BarraMenu extends JMenuBar{
-    private final PanelDeDibujo panelDeDibujo = new PanelDeDibujo();
+    private final PanelDeDibujo panelDeDibujo = AplicacionDeDibujo.panelDeDibujo;
     
     JMenu menuArchivo;
     JMenu menuEdicion;
     
     JMenuItem abrir, cerrar, rehacer, deshacer, guardar, guardarComo;
     JMenuItem copiar, cortar, pegar, eliminar;
-
+    
     public BarraMenu() {
         
         menuArchivo = new JMenu("Archivo");
@@ -87,5 +87,8 @@ public class BarraMenu extends JMenuBar{
                 panelDeDibujo.deshacer();
             }
         });
+                
     }
+    
+    
 }

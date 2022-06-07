@@ -4,16 +4,7 @@
  */
 package aplicaciondedibujo;
 
-import figuras.FiguraRellenable;
-import figuras.Escaleno;
-import figuras.Figura;
-import figuras.Hexagono;
-import figuras.Linea;
-import figuras.Pentagono;
-import figuras.Rectangulo;
-import figuras.Triangulo;
-import figuras.TrianguloRectangulo;
-import figuras.Poligono;
+import figuras.*;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
@@ -128,6 +119,7 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonHexagono = new JToggleButton("Hexagono");
         JToggleButton botonEscaleno = new JToggleButton("Escaleno");
         JToggleButton botonTrianguloRectangulo = new JToggleButton("Triangulo Rectangulo");
+        JToggleButton botonBorrador = new JToggleButton("Borrador");
 
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonPoligono);
@@ -137,6 +129,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonHexagono);
         barraDeHerramientas.add(botonEscaleno);
         barraDeHerramientas.add(botonTrianguloRectangulo);
+        barraDeHerramientas.add(botonBorrador);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
@@ -147,6 +140,7 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonHexagono);
         grupoBotones.add(botonEscaleno);
         grupoBotones.add(botonTrianguloRectangulo);
+        grupoBotones.add(botonBorrador);
         
         Color colorDeContorno = Color.red;
         Color colorDeFondo = Color.black;
@@ -180,6 +174,9 @@ public class PanelDeDibujo extends JPanel {
                 }
                 else if( botonTrianguloRectangulo.isSelected() ) {
                    figuraActual = new TrianguloRectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                }
+                else if( botonBorrador.isSelected() ) {
+                   figuraActual = new Borrador( puntoActual);
                 }
                 
                 figuras.add(figuraActual);
