@@ -4,11 +4,8 @@
  */
 package aplicaciondedibujo;
 
-import aplicaciondedibujo.PanelDeDibujo;
-import figuras.Figura;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -43,7 +40,9 @@ public class BarraMenu extends JMenuBar{
         pegar = new JMenuItem("Pegar");
         eliminar = new JMenuItem("Eliminar");
         
-        //mAopcSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
+        cerrar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
+        rehacer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        deshacer.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         
         menuArchivo.add(abrir);
         menuArchivo.add(cerrar);
@@ -86,6 +85,13 @@ public class BarraMenu extends JMenuBar{
             public void actionPerformed(ActionEvent e) {
                 panelDeDibujo.deshacer();
             }
-        });      
+        });    
+        
+        cerrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
     }
 }
