@@ -116,10 +116,7 @@ public class PanelDeDibujo extends JPanel {
         
         JToggleButton botonLinea = new JToggleButton("Linea");
         JToggleButton botonRombo = new JToggleButton("Rombo");
-
-
         JToggleButton botonPoligono = new JToggleButton("Poligono");
-
         JToggleButton botonEstrella = new JToggleButton("Estrella");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
         JToggleButton botonTriangulo = new JToggleButton("Triangulo");
@@ -133,8 +130,6 @@ public class PanelDeDibujo extends JPanel {
 
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRombo);        
-       
-
         barraDeHerramientas.add(botonPoligono);
         barraDeHerramientas.add(botonEstrella);
         barraDeHerramientas.add(botonRectangulo);
@@ -149,9 +144,7 @@ public class PanelDeDibujo extends JPanel {
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonPoligono);
-
         grupoBotones.add(botonEstrella);
-
         grupoBotones.add(botonRectangulo);
         grupoBotones.add(botonTriangulo);
         grupoBotones.add(botonPentagono);
@@ -184,7 +177,7 @@ public class PanelDeDibujo extends JPanel {
                 }
 
                 else if( botonRombo.isSelected() ) {
-                    figuraActual = new Rombo( puntoActual );
+                    figuraActual = new Rombo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);;
                 }
                 else if( botonEstrella.isSelected() ) {
                     figuraActual = new Estrella(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
