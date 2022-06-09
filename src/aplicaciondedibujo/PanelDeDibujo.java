@@ -4,8 +4,6 @@
  */
 package aplicaciondedibujo;
 
-
-
 import figuras.*;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -115,6 +113,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.setLayout(new GridLayout(2, 10));
         
         JToggleButton botonLinea = new JToggleButton("Linea");
+        JToggleButton botonPacman = new JToggleButton("Pacman");
         JToggleButton botonRombo = new JToggleButton("Rombo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
         JToggleButton botonEstrella = new JToggleButton("Estrella");
@@ -140,6 +139,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonTrianguloRectangulo);
         barraDeHerramientas.add(botonBorrador);
         barraDeHerramientas.add(botonParalelogramo);
+      barraDeHerramientas.add(botonPacman);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
@@ -154,6 +154,7 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonBorrador);
         grupoBotones.add(botonParalelogramo);
        grupoBotones.add(botonRombo);
+      grupoBotones.add(botonPacman);
         
         Color colorDeContorno = Color.red;
         Color colorDeFondo = Color.black;
@@ -175,7 +176,9 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonRectangulo.isSelected() ) {
                     figuraActual = new Rectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
-
+                else if( botonPacman.isSelected() ) {
+                    figuraActual = new Pacman( puntoActual );
+                }
                 else if( botonRombo.isSelected() ) {
                     figuraActual = new Rombo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);;
                 }
