@@ -153,8 +153,8 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonTrianguloRectangulo);
         grupoBotones.add(botonBorrador);
         grupoBotones.add(botonParalelogramo);
-       grupoBotones.add(botonRombo);
-      grupoBotones.add(botonPacman);
+        grupoBotones.add(botonRombo);
+        grupoBotones.add(botonPacman);
         
         Color colorDeContorno = Color.red;
         Color colorDeFondo = Color.black;
@@ -177,7 +177,7 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new Rectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonPacman.isSelected() ) {
-                    figuraActual = new Pacman( puntoActual );
+                    figuraActual = new Pacman(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonRombo.isSelected() ) {
                     figuraActual = new Rombo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);;

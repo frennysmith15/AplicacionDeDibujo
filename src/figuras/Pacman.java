@@ -6,7 +6,6 @@
 package figuras;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -16,7 +15,7 @@ import java.awt.geom.Arc2D;
  *
  * @author JAVIER
  */
-public class Pacman extends Figura{
+public class Pacman extends FiguraRellenable{
     int x;
     int y;
     int anchura;
@@ -25,9 +24,10 @@ public class Pacman extends Figura{
     
     protected Rectangle pacman;
   
-    public Pacman(Point ubicacion) {
-        this.x = ubicacion.x;
-        this.y = ubicacion.y;
+    public Pacman( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
+        super(colorDeFondo, colorDeContorno, relleno);
+        this.x = puntoActual.x;
+        this.y = puntoActual.y;
         this.anchura = 1;
         this.altura = 1;
         
@@ -42,15 +42,17 @@ public class Pacman extends Figura{
         int anchura = pacman.width;
         int altura = pacman.height;
        
-        g.setColor(Color.YELLOW);
-        g.fillArc(x, y, anchura, altura, 30, 305);
+        if(relleno) {
+            g.setColor(colorDeFondo);
+            g.fillArc(x, y, anchura, altura, 30, 305);
+        }
         
-        g.setColor(Color.RED);
+        g.setColor(colorDeContorno);
         Graphics2D g2d=(Graphics2D)g;
         g2d.draw(new Arc2D.Double(x, y, anchura, altura, 30, 305, Arc2D.PIE));
         
-        //g.setColor(Color.BLUE);
-        //g.drawArc(x, y, anchura, altura, 30, 305);
+        this.setContorno(new Rectangle(x, y, anchura, altura));
+        super.dibujar(g);
     }
 
     @Override
