@@ -4,20 +4,21 @@
  */
 package figuras;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Polygon;
 import java.util.ArrayList;
 
 /**
  *
  * @author josearielpereyra
  */
-public class Poligono extends Figura{
+public class Poligono extends FiguraRellenable{
     ArrayList<Point> puntos;
     boolean terminado;
 
-    public Poligono( Point puntoActual ) {
+    public Poligono( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
+        super(colorDeFondo, colorDeContorno, relleno);
         puntos = new ArrayList<>();
         puntos.add(puntoActual);
         terminado = false;
@@ -34,6 +35,7 @@ public class Poligono extends Figura{
             coordenadasY[i] = punto.y;
         }
         
+        g.setColor(colorDeFondo);
         g.drawPolygon(coordenadasX, coordenadasY, totalDePuntos);
     }
 
