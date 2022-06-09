@@ -13,7 +13,7 @@ import java.awt.Rectangle;
  *
  * @author Studio
  */
-public class Paralelogramo extends Figura {
+public class Paralelogramo extends FiguraRellenable {
 
     int x;
     int y;
@@ -23,9 +23,10 @@ public class Paralelogramo extends Figura {
     int[] coordenadasParalelogramoX;
     int[] coordenadasParalelogramoY;
 
-    public Paralelogramo(Point puntoInicial) {
-        this.x = puntoInicial.x;
-        this.y = puntoInicial.y;
+    public Paralelogramo( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
+        super(colorDeFondo, colorDeContorno, relleno);
+        this.x = puntoActual.x;
+        this.y = puntoActual.y;
         this.anchura = 1;
         this.altura = 1;
         terminado = false;
@@ -43,10 +44,16 @@ public class Paralelogramo extends Figura {
         coordenadasParalelogramoX = new int[]{punto1.x, punto2.x, punto3.x, punto4.x};
         coordenadasParalelogramoY = new int[]{punto1.y, punto2.y, punto3.y, punto4.y};
 
-        g.setColor(Color.RED);
-        g.fillPolygon(coordenadasParalelogramoX, coordenadasParalelogramoY, 4);
-        g.setColor(Color.GREEN);
+        if(relleno) {
+            g.setColor(colorDeFondo);
+            g.fillPolygon(coordenadasParalelogramoX, coordenadasParalelogramoY, 4);
+        }
+        
+        g.setColor(colorDeContorno);
         g.drawPolygon(coordenadasParalelogramoX, coordenadasParalelogramoY, 4);
+        
+        this.setContorno(new Rectangle(punto2.x, y, (int)(anchura * 1.40), altura));
+        super.dibujar(g);
 
     }
 
@@ -69,5 +76,4 @@ public class Paralelogramo extends Figura {
     public void terminar() {
         terminado = true;
     }
-
 }
