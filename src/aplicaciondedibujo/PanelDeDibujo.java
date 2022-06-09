@@ -21,6 +21,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import javax.imageio.ImageIO;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -110,7 +111,7 @@ public class PanelDeDibujo extends JPanel {
     public PanelDeDibujo() {
         
         barraDeHerramientas = new JPanel();
-        barraDeHerramientas.setLayout(new FlowLayout( FlowLayout.LEFT));
+        barraDeHerramientas.setLayout(new GridLayout(2, 10));
         
         JToggleButton botonLinea = new JToggleButton("Linea");
 
@@ -122,6 +123,7 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonEscaleno = new JToggleButton("Escaleno");
         JToggleButton botonTrianguloRectangulo = new JToggleButton("Triangulo Rectangulo");
         JToggleButton botonBorrador = new JToggleButton("Borrador");
+        JToggleButton botonParalelogramo = new JToggleButton("Paralelogramo");
 
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonPoligono);
@@ -132,6 +134,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonEscaleno);
         barraDeHerramientas.add(botonTrianguloRectangulo);
         barraDeHerramientas.add(botonBorrador);
+        barraDeHerramientas.add(botonParalelogramo);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
@@ -143,10 +146,12 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonEscaleno);
         grupoBotones.add(botonTrianguloRectangulo);
         grupoBotones.add(botonBorrador);
-
+        grupoBotones.add(botonParalelogramo);
         
         Color colorDeContorno = Color.red;
         Color colorDeFondo = Color.black;
+        
+        botonLinea.setSelected(true);
 
         addMouseListener( new MouseAdapter() {
             @Override
@@ -180,6 +185,9 @@ public class PanelDeDibujo extends JPanel {
                 }
                 else if( botonBorrador.isSelected() ) {
                    figuraActual = new Borrador( puntoActual);
+                }
+                else if( botonParalelogramo.isSelected() ) {
+                   figuraActual = new Paralelogramo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 
 
