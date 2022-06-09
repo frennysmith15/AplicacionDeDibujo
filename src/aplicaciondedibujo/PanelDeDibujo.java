@@ -4,6 +4,7 @@
  */
 package aplicaciondedibujo;
 
+
 import figuras.*;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -112,6 +113,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.setLayout(new FlowLayout( FlowLayout.LEFT));
         
         JToggleButton botonLinea = new JToggleButton("Linea");
+
         JToggleButton botonPoligono = new JToggleButton("Poligono");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
         JToggleButton botonTriangulo = new JToggleButton("Triangulo");
@@ -141,6 +143,7 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonEscaleno);
         grupoBotones.add(botonTrianguloRectangulo);
         grupoBotones.add(botonBorrador);
+
         
         Color colorDeContorno = Color.red;
         Color colorDeFondo = Color.black;
@@ -179,6 +182,7 @@ public class PanelDeDibujo extends JPanel {
                    figuraActual = new Borrador( puntoActual);
                 }
                 
+
                 figuras.add(figuraActual);
 
                 repaint(); 
