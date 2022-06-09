@@ -115,12 +115,12 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.setLayout(new GridLayout(2, 10));
         
         JToggleButton botonLinea = new JToggleButton("Linea");
+        JToggleButton botonRombo = new JToggleButton("Rombo");
+
 
         JToggleButton botonPoligono = new JToggleButton("Poligono");
 
         JToggleButton botonEstrella = new JToggleButton("Estrella");
-        
-
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
         JToggleButton botonTriangulo = new JToggleButton("Triangulo");
         JToggleButton botonPentagono = new JToggleButton("Pentagono");
@@ -132,6 +132,9 @@ public class PanelDeDibujo extends JPanel {
 
 
         barraDeHerramientas.add(botonLinea);
+        barraDeHerramientas.add(botonRombo);        
+       
+
         barraDeHerramientas.add(botonPoligono);
         barraDeHerramientas.add(botonEstrella);
         barraDeHerramientas.add(botonRectangulo);
@@ -157,6 +160,7 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonTrianguloRectangulo);
         grupoBotones.add(botonBorrador);
         grupoBotones.add(botonParalelogramo);
+       grupoBotones.add(botonRombo);
         
         Color colorDeContorno = Color.red;
         Color colorDeFondo = Color.black;
@@ -166,8 +170,8 @@ public class PanelDeDibujo extends JPanel {
         addMouseListener( new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                Point puntoActual = e.getPoint();
-                
+                Point puntoActual = e.getPoint();                
+
                 //decidir la figura que se va a dibujar
                 if( botonLinea.isSelected() ) {
                     figuraActual = new Linea( puntoActual, colorDeContorno );
@@ -177,6 +181,10 @@ public class PanelDeDibujo extends JPanel {
                 }
                 else if( botonRectangulo.isSelected() ) {
                     figuraActual = new Rectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                }
+
+                else if( botonRombo.isSelected() ) {
+                    figuraActual = new Rombo( puntoActual );
                 }
                 else if( botonEstrella.isSelected() ) {
                     figuraActual = new Estrella(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
@@ -203,7 +211,6 @@ public class PanelDeDibujo extends JPanel {
                    figuraActual = new Paralelogramo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 
-
                 figuras.add(figuraActual);
 
                 repaint(); 
