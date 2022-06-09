@@ -13,7 +13,7 @@ import java.awt.Rectangle;
  *
  * @author josearielpereyra
  */
-public class Rectangulo extends Figura {
+public class Rectangulo extends FiguraRellenable {
 
     int x;
     int y;
@@ -22,9 +22,10 @@ public class Rectangulo extends Figura {
     
     protected Rectangle rectangulo;
 
-    public Rectangulo(Point ubicacion) {
-        this.x = ubicacion.x;
-        this.y = ubicacion.y;
+    public Rectangulo( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
+        super(colorDeFondo, colorDeContorno, relleno);
+        this.x = puntoActual.x;
+        this.y = puntoActual.y;
         this.anchura = 1;
         this.altura = 1;
         rectangulo = new Rectangle(x, y, anchura, altura);
@@ -35,12 +36,17 @@ public class Rectangulo extends Figura {
         int y = rectangulo.y;
         int anchura = rectangulo.width;
         int altura = rectangulo.height;
+
+        if(relleno) {
+            g.setColor(colorDeFondo);
+            g.fillRect(x, y, anchura, altura);
+        }
         
-        g.setColor(Color.GREEN);
+        g.setColor(colorDeContorno);
         g.drawRect(x, y, anchura, altura);
 
-        g.setColor(Color.RED);
-        g.fillRect(x, y, anchura, altura);
+        this.setContorno(new Rectangle(x, y, anchura, altura));
+        super.dibujar(g);
     }
 
     public void actualizar(Point puntoActual) {

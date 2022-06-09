@@ -18,6 +18,24 @@ class Marco extends Figura{
     public void mostrar(boolean visible) {
         this.visible = visible;
     }
+
+    public Rectangulo getContorno() {
+        return contorno;
+    }
+
+    public void setContorno(Rectangulo contorno) {
+        this.contorno = contorno;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+    
+    
     
     @Override
     public void dibujar(Graphics g) {
