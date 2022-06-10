@@ -36,5 +36,6 @@ public class AplicacionDeDibujo extends JFrame{
     public static void main(String[] args) {
         AplicacionDeDibujo aplicacionDeDibujo = new AplicacionDeDibujo();
         aplicacionDeDibujo.setVisible(true);
+        
     }
 }

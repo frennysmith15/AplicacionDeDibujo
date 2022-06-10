@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import figuras.Rectangulo;
+import figuras.TrevorDeCuatroHojas;
 import figuras.Triangulo;
 import java.awt.FlowLayout;
 import javax.swing.ButtonGroup;
@@ -39,15 +40,18 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonLinea = new JToggleButton("Linea");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
+        JToggleButton botonTrevor = new JToggleButton("TrevorDeCuatroHojas");
         
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRectangulo);
         barraDeHerramientas.add(botonPoligono);
+        barraDeHerramientas.add(botonTrevor);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonRectangulo);
         grupoBotones.add(botonPoligono);
+        grupoBotones.add(botonTrevor);
         
         addMouseListener( new MouseAdapter() {
             @Override
@@ -65,7 +69,9 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonPoligono.isSelected() ) {
                     figuraActual = new Triangulo( puntoActual );
                 }
-                
+                else if( botonTrevor.isSelected() ) {
+                    figuraActual = new TrevorDeCuatroHojas( puntoActual );
+                }
                 
                 
                 
