@@ -4,6 +4,7 @@
  */
 package figuras;
 
+import aplicaciondedibujo.PanelDeDibujo;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -17,17 +18,13 @@ public abstract class FiguraRellenable extends Figura{
     protected Rectangle contorno;
     protected Color colorDeFondo;
     protected Boolean relleno;
-    private boolean figuraActual;
-
-    FiguraRellenable() {
-        contorno = new Rectangle();
-        figuraActual = true;
-    }
+    protected Point puntoActual;
     
-    public FiguraRellenable(Color colorDeFondo, Color colorDeContorno, Boolean relleno){
+    public FiguraRellenable(Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual){
         super.colorDeContorno = colorDeContorno;
         this.colorDeFondo = colorDeFondo;
         this.relleno = relleno;
+        this.puntoActual = puntoActual;
     }
     
     public Rectangle getContorno() {
@@ -38,53 +35,11 @@ public abstract class FiguraRellenable extends Figura{
         this.contorno = contorno;
     }
     
-    public boolean isFiguraActual() {
-        return figuraActual;
-    }
-
-    public void setFiguraActual(boolean figuraActual) {
-        this.figuraActual = figuraActual;
-    }
-    
-    public void dibujar(Graphics g) {
-        int anchura = contorno.width;
-        int altura = contorno.height;
-        int x = contorno.x;
-        int y = contorno.y;
-        int punteado = 5;
-        
-        if(figuraActual) {
-            g.setColor(Color.black);
-            x = anchura < 0 ? x + anchura : x;
-            y = altura < 0 ? y + altura : y;
-            anchura = Math.abs(anchura);
-            altura = Math.abs(altura);
-            g.drawRect(x, y, anchura, altura);
-
-            g.setColor(Color.white);
-            for(int i = x; i < x + anchura; i += punteado * 2) {
-                g.setColor(Color.white);
-                g.drawLine(i, y, i + punteado, y);
-                g.drawLine(i, y + altura, i + punteado, y + altura);
-            }
-
-            for (int i = y; i < y + altura; i += punteado * 2) {
-                g.setColor(Color.white);
-                g.drawLine(x, i, x, i + punteado);
-                g.drawLine(x + anchura, i, x + anchura, i + punteado);
-            }
-
-            g.setColor(Color.black);
-            g.drawRect(x - punteado / 2, y - punteado / 2, punteado, punteado);
-            g.drawRect(x - punteado / 2 + anchura / 2, y - punteado / 2, punteado, punteado);
-            g.drawRect(x - punteado / 2 + anchura, y - punteado / 2, punteado, punteado);
-
-            g.drawRect(x - punteado / 2, y - punteado / 2 + altura / 2, punteado, punteado);
-            g.drawRect(x - punteado / 2 + anchura, y - punteado / 2 + altura / 2, punteado, punteado);
-
-            g.drawRect(x - punteado / 2, y - punteado / 2 + altura, punteado, punteado);
-            g.drawRect(x - punteado / 2 + anchura / 2, y - punteado / 2 + altura, punteado, punteado);
-            g.drawRect(x - punteado / 2 + anchura, y - punteado / 2 + altura, punteado, punteado);
-        }
+    public void dibujarMarco(Graphics g) {
+        Marco marco = Marco.obtenerInstancia(PanelDeDibujo.panel, puntoActual);
+//       marco.rectangulo.x = puntoActual.x; estas lineas es para que deje de dibujarse donde 
+//       marco.rectangulo.y = puntoActual.y; el quiera sino donde yo diga, pero esto daña el funcionamiento correcto
+       
+       marco.dibujar(g);
     }
 }

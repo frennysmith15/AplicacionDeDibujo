@@ -31,6 +31,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class PanelDeDibujo extends JPanel {
 
+    public static PanelDeDibujo panel;
     Figura figuraActual;
     ArrayList<Figura> figuras = new ArrayList<>();
     Stack<Figura> figurasDeshacer = new Stack<>();;
@@ -79,6 +80,7 @@ public class PanelDeDibujo extends JPanel {
         this.paint(grafico);
         grafico.dispose();
 
+        System.out.println(imagen);
         JFileChooser seleccion = new JFileChooser();
         seleccion.removeChoosableFileFilter(seleccion.getChoosableFileFilters()[0]);
         seleccion.addChoosableFileFilter(new FileNameExtensionFilter("jpg", "jpg"));
@@ -108,7 +110,8 @@ public class PanelDeDibujo extends JPanel {
     }
     
     public PanelDeDibujo() {
-        
+        panel = this;
+        this.setLayout(null);
         barraDeHerramientas = new JPanel();
         barraDeHerramientas.setLayout(new GridLayout(2, 10));
         
@@ -168,7 +171,9 @@ public class PanelDeDibujo extends JPanel {
 
                 //decidir la figura que se va a dibujar
                 if( botonLinea.isSelected() ) {
-                    figuraActual = new Linea( puntoActual, colorDeContorno );
+                    //figuraActual = new Linea( puntoActual, colorDeContorno );
+                    figuraActual = new BaldeDePintura(PanelDeDibujo.this, colorDeContorno);
+                    figuraActual.actualizar(puntoActual);
                 }
                 else if( botonPoligono.isSelected() ) {
                     figuraActual = new Poligono(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
@@ -180,7 +185,7 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new Pacman(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonRombo.isSelected() ) {
-                    figuraActual = new Rombo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);;
+                    figuraActual = new Rombo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonEstrella.isSelected() ) {
                     figuraActual = new Estrella(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
@@ -219,9 +224,16 @@ public class PanelDeDibujo extends JPanel {
                 Point puntoActual = e.getPoint();
                 figuraActual.actualizar( puntoActual );
                 
+                if(figuraActual instanceof FiguraRellenable) {
+                    Marco marco = Marco.obtenerInstancia(PanelDeDibujo.panel, puntoActual);
+                    marco.actualizar(puntoActual);
+                    
+                }
+                                    
                 repaint();
             }
         });
+        
     }
     
     @Override
@@ -229,11 +241,10 @@ public class PanelDeDibujo extends JPanel {
         super.paintComponent(g);
 
         for (Figura figura : figuras) {
-            if(figura instanceof FiguraRellenable) {
-                ((FiguraRellenable) figura).setFiguraActual(figura == figuraActual);
-            }
-            
             figura.dibujar(g);
+        }
+        if(figuraActual instanceof FiguraRellenable) {
+            ((FiguraRellenable) figuraActual).dibujarMarco(g);
         }
     }
     

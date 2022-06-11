@@ -18,7 +18,7 @@ public class Poligono extends FiguraRellenable{
     boolean terminado;
 
     public Poligono( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
-        super(colorDeFondo, colorDeContorno, relleno);
+        super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         puntos = new ArrayList<>();
         puntos.add(puntoActual);
         terminado = false;

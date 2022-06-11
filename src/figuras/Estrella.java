@@ -20,7 +20,7 @@ public class Estrella extends FiguraRellenable{
     int altura;
   
   public Estrella ( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
-        super(colorDeFondo, colorDeContorno, relleno);
+        super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         this.x = puntoActual.x;
         this.y = puntoActual.y;
         this.anchura = 1;
@@ -42,7 +42,6 @@ public class Estrella extends FiguraRellenable{
             g.fillPolygon(estrellaX, estrellaY, estrellaX.length);
         }
         this.setContorno(new Rectangle(x, y, anchura, altura));
-        super.dibujar(g);
     }
 
     @Override

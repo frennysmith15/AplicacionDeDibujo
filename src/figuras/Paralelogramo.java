@@ -24,7 +24,7 @@ public class Paralelogramo extends FiguraRellenable {
     int[] coordenadasParalelogramoY;
 
     public Paralelogramo( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
-        super(colorDeFondo, colorDeContorno, relleno);
+        super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         this.x = puntoActual.x;
         this.y = puntoActual.y;
         this.anchura = 1;
@@ -53,7 +53,6 @@ public class Paralelogramo extends FiguraRellenable {
         g.drawPolygon(coordenadasParalelogramoX, coordenadasParalelogramoY, 4);
         
         this.setContorno(new Rectangle(punto2.x, y, (int)(anchura * 1.40), altura));
-        super.dibujar(g);
 
     }
 
