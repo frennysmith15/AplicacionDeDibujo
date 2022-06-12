@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.ButtonGroup;
 import javax.swing.JToggleButton;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.io.File;
 import javax.swing.JFileChooser;
 import java.awt.image.BufferedImage;
@@ -230,9 +231,30 @@ public class PanelDeDibujo extends JPanel {
                 if(figuraActual instanceof FiguraRellenable) {
                     Marco marco = Marco.obtenerInstancia(PanelDeDibujo.panel, puntoActual, null);
                     marco.actualizar(puntoActual);
+                    JPanel[] panelesDelMarco = Marco.paneles; 
+                        for (JPanel marcos : panelesDelMarco) {
+                            marcos.setVisible(true);
+                        }
                 }
+                else {
+                    if(Marco.paneles != null) {
+                        JPanel[] panelesDelMarco = Marco.paneles; 
+                        for (JPanel marcos : panelesDelMarco) {
+                            marcos.setVisible(false);
+                        }
+                    }
+                    
+                }
+               
                                     
                 repaint();
+                
+                
+            }
+            
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                panel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
     }
@@ -246,7 +268,10 @@ public class PanelDeDibujo extends JPanel {
         }
         if(figuraActual instanceof FiguraRellenable) {
             ((FiguraRellenable) figuraActual).dibujarMarco(g);
+            
         }
+        
+            
     }
     
     public JPanel getBaraDeHerramientas() {
