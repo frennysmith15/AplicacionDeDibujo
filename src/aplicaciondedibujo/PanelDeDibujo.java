@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.ButtonGroup;
 import javax.swing.JToggleButton;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.io.File;
 import javax.swing.JFileChooser;
 import java.awt.image.BufferedImage;
@@ -128,6 +127,7 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonTrianguloRectangulo = new JToggleButton("Triangulo Rectangulo");
         JToggleButton botonBorrador = new JToggleButton("Borrador");
         JToggleButton botonParalelogramo = new JToggleButton("Paralelogramo");
+        JToggleButton botonBaldeDePintura = new JToggleButton("Bote de pintura");
 
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRombo);        
@@ -142,6 +142,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonBorrador);
         barraDeHerramientas.add(botonParalelogramo);
         barraDeHerramientas.add(botonPacman);
+        barraDeHerramientas.add(botonBaldeDePintura);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
@@ -157,6 +158,7 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonParalelogramo);
         grupoBotones.add(botonRombo);
         grupoBotones.add(botonPacman);
+        grupoBotones.add(botonBaldeDePintura);
         
         Color colorDeContorno = Color.red;
         Color colorDeFondo = Color.black;
@@ -170,9 +172,7 @@ public class PanelDeDibujo extends JPanel {
 
                 //decidir la figura que se va a dibujar
                 if( botonLinea.isSelected() ) {
-                    //figuraActual = new Linea( puntoActual, colorDeContorno );
-                    figuraActual = new BaldeDePintura(PanelDeDibujo.this, colorDeContorno);
-                    figuraActual.actualizar(puntoActual);
+                    figuraActual = new Linea( puntoActual, colorDeContorno );
                 }
                 else if( botonPoligono.isSelected() ) {
                     figuraActual = new Poligono(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
@@ -209,6 +209,10 @@ public class PanelDeDibujo extends JPanel {
                 }
                 else if( botonParalelogramo.isSelected() ) {
                    figuraActual = new Paralelogramo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                }
+                else if(botonBaldeDePintura.isSelected()) {
+                    figuraActual = new BaldeDePintura(PanelDeDibujo.this, colorDeContorno);
+                    figuraActual.actualizar(puntoActual);
                 }
                 
                 figuras.add(figuraActual);

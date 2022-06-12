@@ -36,10 +36,7 @@ public abstract class FiguraRellenable extends Figura{
     }
     
     public void dibujarMarco(Graphics g) {
-        Marco marco = Marco.obtenerInstancia(PanelDeDibujo.panel, puntoActual, getContorno());
-//      marco.rectangulo.x = puntoActual.x; estas lineas es para que deje de dibujarse donde 
-//      marco.rectangulo.y = puntoActual.y; el quiera sino donde yo diga, pero esto daña el funcionamiento correcto
-       
+        Marco marco = Marco.obtenerInstancia(PanelDeDibujo.panel, puntoActual, getContorno());       
         marco.dibujar(g);
     }
 }
