@@ -44,7 +44,7 @@ public class Rectangulo extends FiguraRellenable {
         
         g.setColor(colorDeContorno);
         g.drawRect(x, y, anchura, altura);
-
+        
         this.setContorno(new Rectangle(x, y, anchura, altura));
     }
 
@@ -55,7 +55,7 @@ public class Rectangulo extends FiguraRellenable {
         int x = anchura < 0 ? this.x + anchura : this.x;
         int y = altura < 0 ? this.y + altura : this.y;
         rectangulo = new Rectangle(x, y, Math.abs(anchura), Math.abs(altura));
-
+        
         //System.out.println(this.toString());
     }
 

@@ -129,7 +129,6 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonBorrador = new JToggleButton("Borrador");
         JToggleButton botonParalelogramo = new JToggleButton("Paralelogramo");
 
-
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRombo);        
         barraDeHerramientas.add(botonPoligono);
@@ -142,7 +141,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonTrianguloRectangulo);
         barraDeHerramientas.add(botonBorrador);
         barraDeHerramientas.add(botonParalelogramo);
-      barraDeHerramientas.add(botonPacman);
+        barraDeHerramientas.add(botonPacman);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
@@ -225,15 +224,13 @@ public class PanelDeDibujo extends JPanel {
                 figuraActual.actualizar( puntoActual );
                 
                 if(figuraActual instanceof FiguraRellenable) {
-                    Marco marco = Marco.obtenerInstancia(PanelDeDibujo.panel, puntoActual);
+                    Marco marco = Marco.obtenerInstancia(PanelDeDibujo.panel, puntoActual, null);
                     marco.actualizar(puntoActual);
-                    
                 }
                                     
                 repaint();
             }
         });
-        
     }
     
     @Override

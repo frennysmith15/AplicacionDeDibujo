@@ -4,6 +4,7 @@
  */
 package figuras;
 
+import figuras.FiguraRellenable;
 import aplicaciondedibujo.PanelDeDibujo;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -19,7 +20,7 @@ import javax.swing.border.LineBorder;
  *
  * @author josearielpereyra
  */
-public class Marco extends Rectangulo{
+public class Marco extends Rectangulo {
     private boolean visible;
     
     JPanel panelE;
@@ -32,8 +33,11 @@ public class Marco extends Rectangulo{
     JPanel panelSO;
     
     private static Marco instancia;
+    public static Rectangle contorno;
     
-    public static Marco obtenerInstancia(PanelDeDibujo panel, Point puntoActual) {
+    public static Marco obtenerInstancia(PanelDeDibujo panel, Point puntoActual, Rectangle borde) {
+       contorno = borde;
+        
         if (instancia == null) {
             instancia = new Marco(panel, puntoActual);
         }
@@ -42,6 +46,7 @@ public class Marco extends Rectangulo{
 
     private Marco(PanelDeDibujo panelDibujo, Point puntoActual) {
         super(Color.white, Color.BLACK, false, puntoActual);
+        
         panelE = new JPanel();
         panelO = new JPanel();
         panelN = new JPanel();
@@ -65,57 +70,57 @@ public class Marco extends Rectangulo{
             public void mouseMoved(MouseEvent e) {
                 panelDibujo.setCursor(new Cursor(Cursor.E_RESIZE_CURSOR));
             }
-            
         });
+        
         panelO.addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
                 panelDibujo.setCursor(new Cursor(Cursor.W_RESIZE_CURSOR));
             }
-            
         });
+        
         panelN.addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
                 panelDibujo.setCursor(new Cursor(Cursor.N_RESIZE_CURSOR));
             }
-            
         });
+        
         panelS.addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
                 panelDibujo.setCursor(new Cursor(Cursor.S_RESIZE_CURSOR));
             }
-            
         });
+        
         panelNE.addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
                 panelDibujo.setCursor(new Cursor(Cursor.NE_RESIZE_CURSOR));
             }
-            
         });
+        
         panelNO.addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
                 panelDibujo.setCursor(new Cursor(Cursor.NW_RESIZE_CURSOR));
             }
-            
         });
+        
         panelSE.addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
                 panelDibujo.setCursor(new Cursor(Cursor.SE_RESIZE_CURSOR));
             }
-            
         });
+        
         panelSO.addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
                 panelDibujo.setCursor(new Cursor(Cursor.SW_RESIZE_CURSOR));
             }
-            
         });
+        
         panelDibujo.add(panelN);
         panelDibujo.add(panelS);
         panelDibujo.add(panelE);
@@ -140,10 +145,10 @@ public class Marco extends Rectangulo{
     
     @Override
     public void dibujar(Graphics g) {
-        int x = rectangulo.x;
-        int y = rectangulo.y;
-        int anchura = rectangulo.width;
-        int altura = rectangulo.height;
+        int x = contorno.x;
+        int y = contorno.y;
+        int anchura = contorno.width;
+        int altura = contorno.height;
         int punteado = 5;
         
         g.setColor(Color.black);
@@ -176,10 +181,7 @@ public class Marco extends Rectangulo{
         panelSO.setLocation(x - punteado / 2, y - punteado / 2 + altura);
         panelS.setLocation(x - punteado / 2 + anchura / 2, y - punteado / 2 + altura);
         panelSE.setLocation(x - punteado / 2 + anchura, y - punteado / 2 + altura);
+        
         this.setContorno(new Rectangle(x, y, anchura, altura));
-        System.out.println(contorno);
-        
-        
     }
-    
 }
