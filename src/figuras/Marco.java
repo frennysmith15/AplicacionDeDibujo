@@ -6,6 +6,7 @@ package figuras;
 
 import figuras.FiguraRellenable;
 import aplicaciondedibujo.PanelDeDibujo;
+import static figuras.Marco.paneles;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
@@ -32,6 +33,8 @@ public class Marco extends Rectangulo {
     JPanel panelSE;
     JPanel panelSO;
     
+    public static JPanel[] paneles;
+    
     private static Marco instancia;
     public static Rectangle contorno;
     
@@ -55,6 +58,9 @@ public class Marco extends Rectangulo {
         panelNO = new JPanel();
         panelSE = new JPanel();
         panelSO = new JPanel();
+        
+        paneles = new JPanel[]{panelE, panelN, panelNE, panelNO, panelO, panelS, panelSE, panelSO};
+    
         
         panelE.setBorder(new LineBorder(Color.BLACK, 1));
         panelO.setBorder(new LineBorder(Color.BLACK, 1));
@@ -181,6 +187,15 @@ public class Marco extends Rectangulo {
         panelSO.setLocation(x - punteado / 2, y - punteado / 2 + altura);
         panelS.setLocation(x - punteado / 2 + anchura / 2, y - punteado / 2 + altura);
         panelSE.setLocation(x - punteado / 2 + anchura, y - punteado / 2 + altura);
+        
+        panelNO.setSize(punteado,punteado);
+        panelN.setSize(punteado,punteado);
+        panelNE.setSize(punteado,punteado);
+        panelO.setSize(punteado,punteado);
+        panelE.setSize(punteado,punteado);
+        panelSO.setSize(punteado,punteado);
+        panelS.setSize(punteado,punteado);
+        panelSE.setSize(punteado,punteado);
         
         this.setContorno(new Rectangle(x, y, anchura, altura));
     }
