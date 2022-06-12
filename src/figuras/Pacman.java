@@ -25,7 +25,7 @@ public class Pacman extends FiguraRellenable{
     protected Rectangle pacman;
   
     public Pacman( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
-        super(colorDeFondo, colorDeContorno, relleno);
+        super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         this.x = puntoActual.x;
         this.y = puntoActual.y;
         this.anchura = 1;
@@ -52,7 +52,6 @@ public class Pacman extends FiguraRellenable{
         g2d.draw(new Arc2D.Double(x, y, anchura, altura, 30, 305, Arc2D.PIE));
         
         this.setContorno(new Rectangle(x, y, anchura, altura));
-        super.dibujar(g);
     }
 
     @Override

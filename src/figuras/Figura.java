@@ -14,7 +14,6 @@ import java.awt.Point;
  */
 public abstract class Figura {
     protected Color colorDeContorno;
-    public static Marco marco;
     public abstract void dibujar(Graphics g);
 
     public abstract void actualizar(Point puntoActual);

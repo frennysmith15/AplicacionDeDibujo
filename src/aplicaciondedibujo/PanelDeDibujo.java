@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.ButtonGroup;
 import javax.swing.JToggleButton;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.io.File;
 import javax.swing.JFileChooser;
 import java.awt.image.BufferedImage;
@@ -31,6 +30,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class PanelDeDibujo extends JPanel {
 
+    public static PanelDeDibujo panel;
     Figura figuraActual;
     ArrayList<Figura> figuras = new ArrayList<>();
     Stack<Figura> figurasDeshacer = new Stack<>();;
@@ -79,6 +79,7 @@ public class PanelDeDibujo extends JPanel {
         this.paint(grafico);
         grafico.dispose();
 
+        System.out.println(imagen);
         JFileChooser seleccion = new JFileChooser();
         seleccion.removeChoosableFileFilter(seleccion.getChoosableFileFilters()[0]);
         seleccion.addChoosableFileFilter(new FileNameExtensionFilter("jpg", "jpg"));
@@ -108,7 +109,8 @@ public class PanelDeDibujo extends JPanel {
     }
     
     public PanelDeDibujo() {
-        
+        panel = this;
+        this.setLayout(null);
         barraDeHerramientas = new JPanel();
         barraDeHerramientas.setLayout(new GridLayout(2, 10));
         
@@ -125,7 +127,7 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonTrianguloRectangulo = new JToggleButton("Triangulo Rectangulo");
         JToggleButton botonBorrador = new JToggleButton("Borrador");
         JToggleButton botonParalelogramo = new JToggleButton("Paralelogramo");
-
+        JToggleButton botonBaldeDePintura = new JToggleButton("Bote de pintura");
 
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRombo);        
@@ -139,7 +141,8 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonTrianguloRectangulo);
         barraDeHerramientas.add(botonBorrador);
         barraDeHerramientas.add(botonParalelogramo);
-      barraDeHerramientas.add(botonPacman);
+        barraDeHerramientas.add(botonPacman);
+        barraDeHerramientas.add(botonBaldeDePintura);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
@@ -155,6 +158,7 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonParalelogramo);
         grupoBotones.add(botonRombo);
         grupoBotones.add(botonPacman);
+        grupoBotones.add(botonBaldeDePintura);
         
         Color colorDeContorno = Color.red;
         Color colorDeFondo = Color.black;
@@ -180,7 +184,7 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new Pacman(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonRombo.isSelected() ) {
-                    figuraActual = new Rombo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);;
+                    figuraActual = new Rombo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonEstrella.isSelected() ) {
                     figuraActual = new Estrella(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
@@ -206,6 +210,10 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonParalelogramo.isSelected() ) {
                    figuraActual = new Paralelogramo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
+                else if(botonBaldeDePintura.isSelected()) {
+                    figuraActual = new BaldeDePintura(PanelDeDibujo.this, colorDeContorno);
+                    figuraActual.actualizar(puntoActual);
+                }
                 
                 figuras.add(figuraActual);
 
@@ -219,6 +227,11 @@ public class PanelDeDibujo extends JPanel {
                 Point puntoActual = e.getPoint();
                 figuraActual.actualizar( puntoActual );
                 
+                if(figuraActual instanceof FiguraRellenable) {
+                    Marco marco = Marco.obtenerInstancia(PanelDeDibujo.panel, puntoActual, null);
+                    marco.actualizar(puntoActual);
+                }
+                                    
                 repaint();
             }
         });
@@ -229,11 +242,10 @@ public class PanelDeDibujo extends JPanel {
         super.paintComponent(g);
 
         for (Figura figura : figuras) {
-            if(figura instanceof FiguraRellenable) {
-                ((FiguraRellenable) figura).setFiguraActual(figura == figuraActual);
-            }
-            
             figura.dibujar(g);
+        }
+        if(figuraActual instanceof FiguraRellenable) {
+            ((FiguraRellenable) figuraActual).dibujarMarco(g);
         }
     }
     

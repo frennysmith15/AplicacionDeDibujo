@@ -20,10 +20,10 @@ public class Rectangulo extends FiguraRellenable {
     int anchura;
     int altura;
     
-    protected Rectangle rectangulo;
+    public Rectangle rectangulo;
 
     public Rectangulo( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
-        super(colorDeFondo, colorDeContorno, relleno);
+        super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         this.x = puntoActual.x;
         this.y = puntoActual.y;
         this.anchura = 1;
@@ -44,9 +44,8 @@ public class Rectangulo extends FiguraRellenable {
         
         g.setColor(colorDeContorno);
         g.drawRect(x, y, anchura, altura);
-
+        
         this.setContorno(new Rectangle(x, y, anchura, altura));
-        super.dibujar(g);
     }
 
     public void actualizar(Point puntoActual) {
@@ -56,8 +55,8 @@ public class Rectangulo extends FiguraRellenable {
         int x = anchura < 0 ? this.x + anchura : this.x;
         int y = altura < 0 ? this.y + altura : this.y;
         rectangulo = new Rectangle(x, y, Math.abs(anchura), Math.abs(altura));
-
-        System.out.println(this.toString());
+        
+        //System.out.println(this.toString());
     }
 
     @Override

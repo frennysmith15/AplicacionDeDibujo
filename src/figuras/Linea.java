@@ -12,12 +12,11 @@ import java.awt.Point;
  *
  * @author josearielpereyra
  */
-public class Linea extends FiguraRellenable{
+public class Linea extends Figura{
     Point puntoInicial;
     Point puntoFinal;
 
     public Linea( Point puntoInicial, Point puntoFinal, Color colorDeContorno ) {
-        super(null, colorDeContorno, false);
         this.puntoInicial = puntoInicial;
         this.puntoFinal = puntoFinal;
     }

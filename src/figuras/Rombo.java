@@ -12,7 +12,7 @@ public class Rombo extends FiguraRellenable {
     public int[] coordenadasRomboY;
 
     public Rombo( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
-        super(colorDeFondo, colorDeContorno, relleno);
+        super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         this.x = puntoActual.x;
         this.y = puntoActual.y;
         this.anchura = 1;
@@ -46,7 +46,6 @@ public class Rombo extends FiguraRellenable {
         g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x, punto4.x},
                 new int[]{punto1.y, punto2.y, punto3.y, punto4.y}, 4);
         this.setContorno(new Rectangle(x, y, anchura, altura));
-        super.dibujar(g);
     }
 
     @Override
