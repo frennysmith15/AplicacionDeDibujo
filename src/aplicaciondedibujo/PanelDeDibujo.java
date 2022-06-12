@@ -176,7 +176,7 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new Linea( puntoActual, colorDeContorno );
                 }
                 else if( botonPoligono.isSelected() ) {
-                    figuraActual = new Poligono(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                    figuraActual = new Flecha(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonRectangulo.isSelected() ) {
                     figuraActual = new Rectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
@@ -212,6 +212,11 @@ public class PanelDeDibujo extends JPanel {
                    figuraActual = new Paralelogramo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if(botonBaldeDePintura.isSelected()) {
+                    if (Marco.paneles != null) {
+                        for (JPanel marcos : Marco.paneles) {
+                            marcos.setVisible(false);
+                        }
+                    }
                     figuraActual = new BaldeDePintura(PanelDeDibujo.this, colorDeContorno);
                     figuraActual.actualizar(puntoActual);
                 }
