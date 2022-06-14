@@ -203,7 +203,7 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new Pacman(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonCruz.isSelected() ) {
-                    figuraActual = new Cruz( puntoActual );
+                    figuraActual = new Cruz(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 } 
                 else if( botonRombo.isSelected() ) {
                     figuraActual = new Rombo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
