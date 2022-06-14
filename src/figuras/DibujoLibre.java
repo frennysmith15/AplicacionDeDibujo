@@ -18,17 +18,18 @@ public class DibujoLibre extends Figura {
     ArrayList<Point> puntos;
     boolean terminado;
 
-    public DibujoLibre(Point puntoActual) {
+    public DibujoLibre(Point puntoActual, Color colorDeContorno) {
         puntos = new ArrayList<>();
         puntos.add(puntoActual);
         terminado = false;
+        this.colorDeContorno = colorDeContorno;
     }
 
     @Override
     public void dibujar(Graphics g) {
 
         for (int i = 1; i < puntos.size(); i++) {
-            g.setColor(Color.BLACK);
+            g.setColor(colorDeContorno);
             g.drawLine(puntos.get(i - 1).x, puntos.get(i - 1).y, puntos.get(i).x, puntos.get(i).y);
         }
     }

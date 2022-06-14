@@ -162,8 +162,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonCometa);
       barraDeHerramientas.add(botonDibujoLibre);
         barraDeHerramientas.add(botonSemiCirculo);
-        grupoBotones.add(botonDibujoLibre);
-        grupoBotones.add(botonSemiCirculo);
+        
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
@@ -187,6 +186,8 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonPacman);
         grupoBotones.add(botonBaldeDePintura);
         grupoBotones.add(botonFlecha);
+        grupoBotones.add(botonDibujoLibre);
+        grupoBotones.add(botonSemiCirculo);
       
       
         Color colorDeContorno = Color.red;
@@ -213,10 +214,10 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new Rectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonDibujoLibre.isSelected() ) {
-                    figuraActual = new DibujoLibre( puntoActual );
+                    figuraActual = new DibujoLibre( puntoActual, colorDeContorno );
                 }
                 else if( botonSemiCirculo.isSelected() ) {
-                    figuraActual = new SemiCirculo( puntoActual );
+                    figuraActual = new SemiCirculo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonPacman.isSelected() ) {
                     figuraActual = new Pacman(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
