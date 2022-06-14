@@ -12,21 +12,21 @@ import java.awt.Point;
  *
  * @author josearielpereyra
  */
-public class Linea extends Figura {
+public class Linea extends Figura{
     Point puntoInicial;
     Point puntoFinal;
 
-    public Linea( Point puntoInicial, Point puntoFinal ) {
+    public Linea( Point puntoInicial, Point puntoFinal, Color colorDeContorno ) {
         this.puntoInicial = puntoInicial;
         this.puntoFinal = puntoFinal;
     }
 
-    public Linea( Point puntoInicial ) {
-        this(puntoInicial, puntoInicial);
+    public Linea( Point puntoInicial, Color colorDeContorno) {
+        this(puntoInicial, puntoInicial, colorDeContorno);
     }
 
     public void dibujar(Graphics g) {
-        g.setColor(Color.BLACK);
+        g.setColor(colorDeContorno);
         g.drawLine(puntoInicial.x, puntoInicial.y, puntoFinal.x, puntoFinal.y);
     }
 
