@@ -44,12 +44,14 @@ public class Poligono extends FiguraRellenable{
         coordenadasPoligonoX = new int[]{punto1.x, punto2.x, punto3.x, punto4.x, punto5.x, punto6.x, punto7.x};
         coordenadasPoligonoY = new int[]{punto1.y, punto2.y, punto3.y, punto4.y, punto5.y, punto6.y, punto7.y};
 
-        g.setColor(Color.GREEN);
+        if(relleno) {
+            g.setColor(colorDeFondo);
+            g.fillPolygon(coordenadasPoligonoX, coordenadasPoligonoY, 7);
+        }
+        g.setColor(colorDeContorno);
         g.drawPolygon(coordenadasPoligonoX, coordenadasPoligonoY, 7);
     
 
-        g.setColor(Color.RED);
-        g.fillPolygon(coordenadasPoligonoX, coordenadasPoligonoY, 7);
         
         this.setContorno(new Rectangle(x,(int) (y - altura), anchura, altura *2));
 

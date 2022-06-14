@@ -221,7 +221,7 @@ public class PanelDeDibujo extends JPanel {
                    figuraActual = new TrianguloRectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonAnillo.isSelected() ) {
-                   figuraActual = new Anillo(puntoActual);
+                   figuraActual = new Anillo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonBorrador.isSelected() ) {
                    figuraActual = new Borrador( puntoActual);

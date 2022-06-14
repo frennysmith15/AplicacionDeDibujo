@@ -7,27 +7,25 @@ package figuras;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  *
  * @author JanCarlosDM
  */
-public class Anillo extends Figura {
+public class Anillo extends FiguraRellenable {
 
     int x;
     int y;
     int anchura;
     int altura;
 
-    public Anillo(Point puntoInicial) {
-        this.x = puntoInicial.x;
-        this.y = puntoInicial.y;
+    public Anillo( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
+        super(colorDeFondo, colorDeContorno, relleno, puntoActual);
+        this.x = puntoActual.x;
+        this.y = puntoActual.y;
         this.anchura = 1;
         this.altura = 1;
-    }
-
-    public Anillo(Color colorDeFondo, Color colorDeContorno, Boolean TRUE, Point puntoActual) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public void actualizar(Point puntoActual) {
@@ -48,22 +46,24 @@ public class Anillo extends Figura {
             y = this.y;
         }
 
-        g.setColor(Color.RED);
-        g.fillOval(x, y, Math.abs(anchura), Math.abs(altura));
-        g.setColor(Color.WHITE);
-        if (anchura > 0 && altura > 0) {
-            g.fillOval(x + anchura / 4, y + altura / 4, Math.abs(anchura / 2), Math.abs(altura / 2));
-        } else if (anchura < 0 && altura > 0) {
-            g.fillOval((int) (x - (anchura * 0.25)), y + altura / 4, Math.abs((int) (anchura * 0.50)), Math.abs(altura / 2));
-        } else if (anchura > 0 && altura < 0) {
-            g.fillOval((int) (x + (anchura * 0.25)), y - altura / 4, Math.abs((int) (anchura * 0.50)), Math.abs(altura / 2));
-        } else if (anchura > 0 && altura < 0) {
-            g.fillOval((int) (x + (anchura * 0.25)), y - altura / 4, Math.abs((int) (anchura * 0.50)), Math.abs(altura / 2));
-        } else if (anchura < 0 && altura < 0) {
-            g.fillOval((int) (x - (anchura * 0.25)), y - altura / 4, Math.abs((int) (anchura * 0.50)), Math.abs(altura / 2));
+        if(relleno) {
+            g.setColor(colorDeFondo);
+            g.fillOval(x, y, Math.abs(anchura), Math.abs(altura));
+            g.setColor(Color.WHITE);
+            if (anchura > 0 && altura > 0) {
+                g.fillOval(x + anchura / 4, y + altura / 4, Math.abs(anchura / 2), Math.abs(altura / 2));
+            } else if (anchura < 0 && altura > 0) {
+                g.fillOval((int) (x - (anchura * 0.25)), y + altura / 4, Math.abs((int) (anchura * 0.50)), Math.abs(altura / 2));
+            } else if (anchura > 0 && altura < 0) {
+                g.fillOval((int) (x + (anchura * 0.25)), y - altura / 4, Math.abs((int) (anchura * 0.50)), Math.abs(altura / 2));
+            } else if (anchura > 0 && altura < 0) {
+                g.fillOval((int) (x + (anchura * 0.25)), y - altura / 4, Math.abs((int) (anchura * 0.50)), Math.abs(altura / 2));
+            } else if (anchura < 0 && altura < 0) {
+                g.fillOval((int) (x - (anchura * 0.25)), y - altura / 4, Math.abs((int) (anchura * 0.50)), Math.abs(altura / 2));
+            }
         }
 
-        g.setColor(Color.BLUE);
+        g.setColor(colorDeContorno);
         g.drawOval(x, y, Math.abs(anchura), Math.abs(altura));
         if (anchura > 0 && altura > 0) {
             g.drawOval(x + anchura / 4, y + altura / 4, Math.abs(anchura / 2), Math.abs(altura / 2));
@@ -76,7 +76,8 @@ public class Anillo extends Figura {
         } else if (anchura < 0 && altura < 0) {
             g.drawOval((int) (x - (anchura * 0.25)), y - altura / 4, Math.abs((int) (anchura * 0.50)), Math.abs(altura / 2));
         }
-
+        
+        this.setContorno(new Rectangle(x, y, anchura, altura));
     }
 
     @Override
