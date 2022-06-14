@@ -116,6 +116,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.setLayout(new GridLayout(2, 10));
         
         JToggleButton botonLinea = new JToggleButton("Linea");
+
         JToggleButton botonPacman = new JToggleButton("Pacman");
         JToggleButton botonRombo = new JToggleButton("Rombo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
