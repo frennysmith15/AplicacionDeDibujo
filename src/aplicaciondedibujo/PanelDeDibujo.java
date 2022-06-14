@@ -127,11 +127,11 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonHexagono = new JToggleButton("Hexagono");
         JToggleButton botonEscaleno = new JToggleButton("Escaleno");
         JToggleButton botonTrianguloRectangulo = new JToggleButton("Triangulo Rectangulo");
+        JToggleButton botonAnillo = new JToggleButton("Anillo");
         JToggleButton botonBorrador = new JToggleButton("Borrador");
         JToggleButton botonParalelogramo = new JToggleButton("Paralelogramo");
         JToggleButton botonBaldeDePintura = new JToggleButton("Bote de pintura");
         JToggleButton botonFlecha = new JToggleButton("Flecha");
-
 
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRombo);        
@@ -144,12 +144,13 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonHexagono);
         barraDeHerramientas.add(botonEscaleno);
         barraDeHerramientas.add(botonTrianguloRectangulo);
+        barraDeHerramientas.add(botonAnillo);
+
         barraDeHerramientas.add(botonBorrador);
         barraDeHerramientas.add(botonParalelogramo);
         barraDeHerramientas.add(botonPacman);
         barraDeHerramientas.add(botonBaldeDePintura);
         barraDeHerramientas.add(botonFlecha);
-
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
@@ -162,13 +163,16 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonHexagono);
         grupoBotones.add(botonEscaleno);
         grupoBotones.add(botonTrianguloRectangulo);
+        grupoBotones.add(botonAnillo);
+
         grupoBotones.add(botonBorrador);
         grupoBotones.add(botonParalelogramo);
         grupoBotones.add(botonRombo);
         grupoBotones.add(botonPacman);
         grupoBotones.add(botonBaldeDePintura);
         grupoBotones.add(botonFlecha);
-        
+      
+      
         Color colorDeContorno = Color.red;
         Color colorDeFondo = Color.black;
         
@@ -216,6 +220,9 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonTrianguloRectangulo.isSelected() ) {
                    figuraActual = new TrianguloRectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
+                else if( botonAnillo.isSelected() ) {
+                   figuraActual = new Anillo(puntoActual);
+                }
                 else if( botonBorrador.isSelected() ) {
                    figuraActual = new Borrador( puntoActual);
                 }
@@ -234,7 +241,7 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonTrevor.isSelected() ) {
                     figuraActual = new TrevorDeCuatroHojas(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
-               
+
                 
                 figuras.add(figuraActual);
 
