@@ -116,7 +116,9 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.setLayout(new GridLayout(2, 10));
         
         JToggleButton botonLinea = new JToggleButton("Linea");
-        JToggleButton botonPacman = new JToggleButton("Pacman");
+        JToggleButton botonDibujoLibre = new JToggleButton("Lapiz");
+        JToggleButton botonSemiCirculo = new JToggleButton("SemiCirculo");
+          JToggleButton botonPacman = new JToggleButton("Pacman");
         JToggleButton botonRombo = new JToggleButton("Rombo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
         JToggleButton botonMediaLuna = new JToggleButton("MediaLuna");
@@ -158,6 +160,10 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonFlecha);
         barraDeHerramientas.add(botonOctagono);
         barraDeHerramientas.add(botonCometa);
+      barraDeHerramientas.add(botonDibujoLibre);
+        barraDeHerramientas.add(botonSemiCirculo);
+        grupoBotones.add(botonDibujoLibre);
+        grupoBotones.add(botonSemiCirculo);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
@@ -205,6 +211,12 @@ public class PanelDeDibujo extends JPanel {
                 }
                 else if( botonRectangulo.isSelected() ) {
                     figuraActual = new Rectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                }
+                else if( botonDibujoLibre.isSelected() ) {
+                    figuraActual = new DibujoLibre( puntoActual );
+                }
+                else if( botonSemiCirculo.isSelected() ) {
+                    figuraActual = new SemiCirculo( puntoActual );
                 }
                 else if( botonPacman.isSelected() ) {
                     figuraActual = new Pacman(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
@@ -263,7 +275,6 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonMediaLuna.isSelected() ) {
                     figuraActual = new MediaLuna(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
-    
                 
                 figuras.add(figuraActual);
 
