@@ -116,7 +116,6 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.setLayout(new GridLayout(2, 10));
         
         JToggleButton botonLinea = new JToggleButton("Linea");
-
         JToggleButton botonPacman = new JToggleButton("Pacman");
         JToggleButton botonRombo = new JToggleButton("Rombo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
@@ -131,6 +130,7 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonBorrador = new JToggleButton("Borrador");
         JToggleButton botonParalelogramo = new JToggleButton("Paralelogramo");
         JToggleButton botonBaldeDePintura = new JToggleButton("Bote de pintura");
+        JToggleButton botonFlecha = new JToggleButton("Flecha");
 
 
         barraDeHerramientas.add(botonLinea);
@@ -148,6 +148,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonParalelogramo);
         barraDeHerramientas.add(botonPacman);
         barraDeHerramientas.add(botonBaldeDePintura);
+        barraDeHerramientas.add(botonFlecha);
 
         
         ButtonGroup grupoBotones = new ButtonGroup();
@@ -166,6 +167,7 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonRombo);
         grupoBotones.add(botonPacman);
         grupoBotones.add(botonBaldeDePintura);
+        grupoBotones.add(botonFlecha);
         
         Color colorDeContorno = Color.red;
         Color colorDeFondo = Color.black;
@@ -182,6 +184,9 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new Linea( puntoActual, colorDeContorno );
                 }
                 else if( botonPoligono.isSelected() ) {
+                    figuraActual = new Poligono(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                }
+                else if( botonFlecha.isSelected() ) {
                     figuraActual = new Flecha(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonRectangulo.isSelected() ) {
