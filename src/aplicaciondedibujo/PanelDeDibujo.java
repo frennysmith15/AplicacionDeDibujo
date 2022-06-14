@@ -119,6 +119,7 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonPacman = new JToggleButton("Pacman");
         JToggleButton botonRombo = new JToggleButton("Rombo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
+        JToggleButton botonCruz = new JToggleButton("Cruz");
         JToggleButton botonTrevor = new JToggleButton("TrevorDeCuatroHojas");
         JToggleButton botonEstrella = new JToggleButton("Estrella");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
@@ -136,6 +137,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRombo);        
         barraDeHerramientas.add(botonPoligono);
+        barraDeHerramientas.add(botonCruz);
         barraDeHerramientas.add(botonTrevor);
         barraDeHerramientas.add(botonEstrella);
         barraDeHerramientas.add(botonRectangulo);
@@ -145,7 +147,6 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonEscaleno);
         barraDeHerramientas.add(botonTrianguloRectangulo);
         barraDeHerramientas.add(botonAnillo);
-
         barraDeHerramientas.add(botonBorrador);
         barraDeHerramientas.add(botonParalelogramo);
         barraDeHerramientas.add(botonPacman);
@@ -155,6 +156,7 @@ public class PanelDeDibujo extends JPanel {
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonPoligono);
+        grupoBotones.add(botonCruz);
         grupoBotones.add(botonTrevor);
         grupoBotones.add(botonEstrella);
         grupoBotones.add(botonRectangulo);
@@ -181,6 +183,7 @@ public class PanelDeDibujo extends JPanel {
         addMouseListener( new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
+
                 Point puntoActual = e.getPoint();                
 
                 //decidir la figura que se va a dibujar
@@ -199,6 +202,9 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonPacman.isSelected() ) {
                     figuraActual = new Pacman(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
+                else if( botonCruz.isSelected() ) {
+                    figuraActual = new Cruz( puntoActual );
+                } 
                 else if( botonRombo.isSelected() ) {
                     figuraActual = new Rombo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
@@ -241,7 +247,6 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonTrevor.isSelected() ) {
                     figuraActual = new TrevorDeCuatroHojas(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
-
                 
                 figuras.add(figuraActual);
 
