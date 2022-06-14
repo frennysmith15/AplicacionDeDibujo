@@ -119,6 +119,7 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonPacman = new JToggleButton("Pacman");
         JToggleButton botonRombo = new JToggleButton("Rombo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
+        JToggleButton botonTrevor = new JToggleButton("TrevorDeCuatroHojas");
         JToggleButton botonEstrella = new JToggleButton("Estrella");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
         JToggleButton botonTriangulo = new JToggleButton("Triangulo");
@@ -130,9 +131,11 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonParalelogramo = new JToggleButton("Paralelogramo");
         JToggleButton botonBaldeDePintura = new JToggleButton("Bote de pintura");
 
+
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRombo);        
         barraDeHerramientas.add(botonPoligono);
+        barraDeHerramientas.add(botonTrevor);
         barraDeHerramientas.add(botonEstrella);
         barraDeHerramientas.add(botonRectangulo);
         barraDeHerramientas.add(botonTriangulo);
@@ -144,10 +147,12 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonParalelogramo);
         barraDeHerramientas.add(botonPacman);
         barraDeHerramientas.add(botonBaldeDePintura);
+
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonPoligono);
+        grupoBotones.add(botonTrevor);
         grupoBotones.add(botonEstrella);
         grupoBotones.add(botonRectangulo);
         grupoBotones.add(botonTriangulo);
@@ -220,6 +225,10 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new BaldeDePintura(PanelDeDibujo.this, colorDeContorno);
                     figuraActual.actualizar(puntoActual);
                 }
+                else if( botonTrevor.isSelected() ) {
+                    figuraActual = new TrevorDeCuatroHojas( puntoActual );
+                }
+               
                 
                 figuras.add(figuraActual);
 

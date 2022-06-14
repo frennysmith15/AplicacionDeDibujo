@@ -51,6 +51,7 @@ public class AplicacionDeDibujo extends JFrame{
         
         AplicacionDeDibujo aplicacionDeDibujo = new AplicacionDeDibujo();
         aplicacionDeDibujo.setVisible(true);
+        
     }
     
     public PanelDeDibujo getPanelDeDibujo(){
