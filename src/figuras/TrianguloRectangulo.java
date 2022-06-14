@@ -7,6 +7,7 @@ package figuras;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  *
@@ -19,7 +20,7 @@ public class TrianguloRectangulo extends FiguraRellenable{
     int altura;
 
     public TrianguloRectangulo( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
-        super(colorDeFondo, colorDeContorno, relleno);
+        super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         this.x = puntoActual.x;
         this.y = puntoActual.y;
         this.anchura = 1;
@@ -41,12 +42,14 @@ public class TrianguloRectangulo extends FiguraRellenable{
         Point punto2 = new Point(x, y);
         Point punto3 = new Point(x + anchura, y + altura);
 
-        g.setColor(colorDeContorno);
-        g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x}, new int[]{punto1.y, punto2.y, punto3.y}, 3);
-        
         if(relleno) {
             g.setColor(colorDeFondo);
             g.fillPolygon(new int[]{punto1.x, punto2.x, punto3.x}, new int[]{punto1.y, punto2.y, punto3.y}, 3);
         }
+        
+        g.setColor(colorDeContorno);
+        g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x}, new int[]{punto1.y, punto2.y, punto3.y}, 3);
+        
+        this.setContorno(new Rectangle(x, y, anchura, altura));
     }
 }

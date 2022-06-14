@@ -21,7 +21,7 @@ public class Triangulo extends FiguraRellenable{
     int altura;
 
     public Triangulo( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
-        super(colorDeFondo, colorDeContorno, relleno);
+        super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         this.x = puntoActual.x;
         this.y = puntoActual.y;
         this.anchura = 1;
@@ -36,14 +36,15 @@ public class Triangulo extends FiguraRellenable{
        int[] coordenadasX = {x, x + anchura/2, x + anchura};
        int[] coordenadasY = {y + altura, y, y + altura};
        
-        
-        g.setColor(colorDeContorno);
-        g.drawPolygon(coordenadasX, coordenadasY, 3);
-
         if(relleno) {
             g.setColor(colorDeFondo);
             g.fillPolygon(coordenadasX, coordenadasY, 3);
         }
+        
+        g.setColor(colorDeContorno);
+        g.drawPolygon(coordenadasX, coordenadasY, 3);
+
+        this.setContorno(new Rectangle(x, y, anchura, altura));
     }
     
     @Override

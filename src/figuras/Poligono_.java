@@ -3,10 +3,9 @@ package figuras;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 
 
-public class Poligono extends FiguraRellenable{
+public class Poligono_ extends Figura {
 
     int x;
     int y;
@@ -16,14 +15,15 @@ public class Poligono extends FiguraRellenable{
     public int[] coordenadasPoligonoX;
     public int[] coordenadasPoligonoY;
 
-    public Poligono( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
-        super(colorDeFondo, colorDeContorno, relleno, puntoActual);
-        this.x = puntoActual.x;
-        this.y = puntoActual.y;
+    public Poligono_(Point puntoInicial) {
+        this.x = puntoInicial.x;
+        this.y = puntoInicial.y;
         this.anchura = 1;
         this.altura = 1;
         terminado = false;
-        
+    }
+
+    Poligono_() {
     }
 
     @Override
@@ -50,8 +50,24 @@ public class Poligono extends FiguraRellenable{
 
         g.setColor(Color.RED);
         g.fillPolygon(coordenadasPoligonoX, coordenadasPoligonoY, 7);
-        
-        this.setContorno(new Rectangle(x,(int) (y - altura), anchura, altura *2));
+
+        // Codigo para marco de poligono
+        for (int n = coordenadasPoligonoX[6]; n <= coordenadasPoligonoX[2]; n += 10) {
+            g.setColor(Color.BLACK);
+            g.drawString("-", n + 1, coordenadasPoligonoY[1]);
+        }
+        for (int N = coordenadasPoligonoY[1]; N <= coordenadasPoligonoY[5] + 2; N += 10) {
+             g.setColor(Color.BLACK);
+            g.drawString("'", coordenadasPoligonoX[2], N + 5);
+        }
+        for (int m = coordenadasPoligonoX[6]; m <= coordenadasPoligonoX[2]; m += 10) {
+             g.setColor(Color.BLACK);
+            g.drawString("-", m, coordenadasPoligonoY[5] + 5);
+        }
+        for (int M = coordenadasPoligonoY[1]; M <= coordenadasPoligonoY[5] + 2; M += 10) {
+             g.setColor(Color.BLACK);
+            g.drawString("'", coordenadasPoligonoX[6], M + 5);
+        }
 
         /*  
         g.drawLine(coordenadasPoligonoX[6], coordenadasPoligonoY[1], coordenadasPoligonoX[2], coordenadasPoligonoY[1]);

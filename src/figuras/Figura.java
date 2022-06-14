@@ -7,14 +7,14 @@ package figuras;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-
+import java.awt.Canvas;
 /**
  *
  * @author josearielpereyra
  */
 public abstract class Figura {
     protected Color colorDeContorno;
-    public static Marco marco;
+  
     public abstract void dibujar(Graphics g);
 
     public abstract void actualizar(Point puntoActual);
