@@ -226,7 +226,7 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual.actualizar(puntoActual);
                 }
                 else if( botonTrevor.isSelected() ) {
-                    figuraActual = new TrevorDeCuatroHojas( puntoActual );
+                    figuraActual = new TrevorDeCuatroHojas(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                
                 
