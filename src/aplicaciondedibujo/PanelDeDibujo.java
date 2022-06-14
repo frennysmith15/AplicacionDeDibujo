@@ -261,7 +261,7 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new TrevorDeCuatroHojas(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonMediaLuna.isSelected() ) {
-                    figuraActual = new MediaLuna( puntoActual );
+                    figuraActual = new MediaLuna(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
     
                 
