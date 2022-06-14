@@ -119,6 +119,7 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonPacman = new JToggleButton("Pacman");
         JToggleButton botonRombo = new JToggleButton("Rombo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
+        JToggleButton botonMediaLuna = new JToggleButton("MediaLuna");
         JToggleButton botonCruz = new JToggleButton("Cruz");
         JToggleButton botonTrevor = new JToggleButton("TrevorDeCuatroHojas");
         JToggleButton botonEstrella = new JToggleButton("Estrella");
@@ -135,10 +136,11 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonFlecha = new JToggleButton("Flecha");
         JToggleButton botonCometa = new JToggleButton("Cometa");
         JToggleButton botonOctagono = new JToggleButton("Octagono");
-
+      
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRombo);        
         barraDeHerramientas.add(botonPoligono);
+        barraDeHerramientas.add(botonMediaLuna);
         barraDeHerramientas.add(botonCruz);
         barraDeHerramientas.add(botonTrevor);
         barraDeHerramientas.add(botonEstrella);
@@ -160,6 +162,7 @@ public class PanelDeDibujo extends JPanel {
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonPoligono);
+        grupoBotones.add(botonMediaLuna);
         grupoBotones.add(botonCruz);
         grupoBotones.add(botonTrevor);
         grupoBotones.add(botonEstrella);
@@ -182,7 +185,6 @@ public class PanelDeDibujo extends JPanel {
       
         Color colorDeContorno = Color.red;
         Color colorDeFondo = Color.black;
-        
         botonLinea.setSelected(true);
 
         addMouseListener( new MouseAdapter() {
@@ -258,6 +260,10 @@ public class PanelDeDibujo extends JPanel {
                 else if( botonTrevor.isSelected() ) {
                     figuraActual = new TrevorDeCuatroHojas(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
+                else if( botonMediaLuna.isSelected() ) {
+                    figuraActual = new MediaLuna( puntoActual );
+                }
+    
                 
                 figuras.add(figuraActual);
 
