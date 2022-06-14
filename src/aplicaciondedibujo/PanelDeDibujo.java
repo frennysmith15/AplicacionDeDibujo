@@ -133,6 +133,8 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonParalelogramo = new JToggleButton("Paralelogramo");
         JToggleButton botonBaldeDePintura = new JToggleButton("Bote de pintura");
         JToggleButton botonFlecha = new JToggleButton("Flecha");
+        JToggleButton botonCometa = new JToggleButton("Cometa");
+        JToggleButton botonOctagono = new JToggleButton("Octagono");
 
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRombo);        
@@ -152,6 +154,8 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonPacman);
         barraDeHerramientas.add(botonBaldeDePintura);
         barraDeHerramientas.add(botonFlecha);
+        barraDeHerramientas.add(botonOctagono);
+        barraDeHerramientas.add(botonCometa);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
@@ -166,7 +170,8 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonEscaleno);
         grupoBotones.add(botonTrianguloRectangulo);
         grupoBotones.add(botonAnillo);
-
+        grupoBotones.add(botonCometa);
+        grupoBotones.add(botonOctagono);
         grupoBotones.add(botonBorrador);
         grupoBotones.add(botonParalelogramo);
         grupoBotones.add(botonRombo);
@@ -228,6 +233,12 @@ public class PanelDeDibujo extends JPanel {
                 }
                 else if( botonAnillo.isSelected() ) {
                    figuraActual = new Anillo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                }
+                else if( botonOctagono.isSelected() ) {
+                   figuraActual = new Octagono(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                }
+                else if( botonCometa.isSelected() ) {
+                   figuraActual = new Cometa(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonBorrador.isSelected() ) {
                    figuraActual = new Borrador( puntoActual);
