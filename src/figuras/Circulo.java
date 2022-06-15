@@ -45,6 +45,7 @@ public class Circulo extends FiguraRellenable {
         g.setColor(colorDeContorno);
         g.drawOval(x, y, Math.abs(anchura), Math.abs(altura));
         
+        
         this.setContorno(new Rectangle(x, y, anchura, altura));
     }
 
