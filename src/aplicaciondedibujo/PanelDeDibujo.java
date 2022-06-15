@@ -121,6 +121,7 @@ public class PanelDeDibujo extends JPanel {
           JToggleButton botonPacman = new JToggleButton("Pacman");
         JToggleButton botonRombo = new JToggleButton("Rombo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
+        JToggleButton botonCirculo = new JToggleButton("Circulo");
         JToggleButton botonMediaLuna = new JToggleButton("MediaLuna");
         JToggleButton botonCruz = new JToggleButton("Cruz");
         JToggleButton botonTrevor = new JToggleButton("TrevorDeCuatroHojas");
@@ -142,6 +143,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRombo);        
         barraDeHerramientas.add(botonPoligono);
+        barraDeHerramientas.add(botonCirculo);
         barraDeHerramientas.add(botonMediaLuna);
         barraDeHerramientas.add(botonCruz);
         barraDeHerramientas.add(botonTrevor);
@@ -163,10 +165,10 @@ public class PanelDeDibujo extends JPanel {
       barraDeHerramientas.add(botonDibujoLibre);
         barraDeHerramientas.add(botonSemiCirculo);
         
-        
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonPoligono);
+        grupoBotones.add(botonCirculo);
         grupoBotones.add(botonMediaLuna);
         grupoBotones.add(botonCruz);
         grupoBotones.add(botonTrevor);
@@ -275,6 +277,9 @@ public class PanelDeDibujo extends JPanel {
                 }
                 else if( botonMediaLuna.isSelected() ) {
                     figuraActual = new MediaLuna(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                }
+                else if( botonCirculo.isSelected() ) {
+                    figuraActual = new Circulo( puntoActual );
                 }
                 
                 figuras.add(figuraActual);
