@@ -4,9 +4,7 @@
  */
 package figuras;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.*;
 
 /**
  *
@@ -17,9 +15,11 @@ public class Linea extends Figura{
     Point puntoFinal;
 
     public Linea( Point puntoInicial, Point puntoFinal, Color colorDeContorno ) {
+
         this.puntoInicial = puntoInicial;
         this.puntoFinal = puntoFinal;
     }
+
 
     public Linea( Point puntoInicial, Color colorDeContorno) {
         this(puntoInicial, puntoInicial, colorDeContorno);
@@ -29,7 +29,7 @@ public class Linea extends Figura{
         g.setColor(colorDeContorno);
         g.drawLine(puntoInicial.x, puntoInicial.y, puntoFinal.x, puntoFinal.y);
     }
-
+        
     public void actualizar(Point puntoActual) {
         this.puntoFinal = puntoActual;
     }

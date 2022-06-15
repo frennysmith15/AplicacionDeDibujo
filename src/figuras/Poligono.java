@@ -16,6 +16,7 @@ public class Poligono extends FiguraRellenable{
     public int[] coordenadasPoligonoX;
     public int[] coordenadasPoligonoY;
 
+
     public Poligono( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
         super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         this.x = puntoActual.x;

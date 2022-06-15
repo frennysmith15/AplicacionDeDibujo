@@ -21,6 +21,7 @@ import javax.swing.border.LineBorder;
  *
  * @author josearielpereyra
  */
+
 public class Marco extends Rectangulo {
     private boolean visible;
     
@@ -149,7 +150,7 @@ public class Marco extends Rectangulo {
         this.visible = visible;
     }
     
-    @Override
+   
     public void dibujar(Graphics g) {
         int x = contorno.x;
         int y = contorno.y;

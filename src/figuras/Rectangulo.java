@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package figuras;
-
+import aplicaciondedibujo.PanelDeDibujo;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -41,7 +41,7 @@ public class Rectangulo extends FiguraRellenable {
             g.setColor(colorDeFondo);
             g.fillRect(x, y, anchura, altura);
         }
-        
+
         g.setColor(colorDeContorno);
         g.drawRect(x, y, anchura, altura);
         

@@ -28,7 +28,7 @@ public class Triangulo extends FiguraRellenable{
         this.altura = 1;
         
     }
-   
+
 
     @Override
     public void dibujar(Graphics g) {

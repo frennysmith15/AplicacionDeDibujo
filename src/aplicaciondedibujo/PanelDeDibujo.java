@@ -24,7 +24,6 @@ import java.awt.GridLayout;
 import javax.imageio.ImageIO;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-
 /**
  *
  * @author josearielpereyra
@@ -36,6 +35,7 @@ public class PanelDeDibujo extends JPanel {
     ArrayList<Figura> figuras = new ArrayList<>();
     Stack<Figura> figurasDeshacer = new Stack<>();;
     JPanel barraDeHerramientas;
+
     File archivo;
     
     public void rehacer() {
@@ -195,9 +195,26 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonDibujoLibre);
         grupoBotones.add(botonSemiCirculo);
       
-        Color colorDeContorno = Color.red;
-        Color colorDeFondo = Color.black;
+        Color colorDeContorno;
+        Color colorDeFondo;
+        
         botonLinea.setSelected(true);
+        
+        barraDeHerramientas = new JPanel();
+        barraDeHerramientas.setLayout(new FlowLayout(FlowLayout
+        
+        //Evento de button selecionar colores
+        ActionListener ActionButoon = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            
+            colorDeContorno = JColorChooser.showDialog(null, "Seleccione el color del contorno", colorDeContorno);
+            colorDeFondo = JColorChooser.showDialog(null, "Seleccione el color del interior", colorDeFondo);
+
+            }
+        };
+        botonSelecionarColor.addActionListener(ActionButoon);
+
 
         addMouseListener( new MouseAdapter() {
             @Override
@@ -289,15 +306,19 @@ public class PanelDeDibujo extends JPanel {
                 }
                 
                 figuras.add(figuraActual);
+                repaint();
 
-                repaint(); 
             }
-        });
-        
-        addMouseMotionListener( new MouseAdapter() {
+        }
+        );
+
+        addMouseMotionListener(
+                new MouseAdapter() {
             @Override
-            public void mouseDragged(MouseEvent e) {
+            public void mouseDragged(MouseEvent e
+            ) {
                 Point puntoActual = e.getPoint();
+
                 figuraActual.actualizar( puntoActual );
                 
                 if(figuraActual instanceof FiguraRellenable) {
@@ -318,7 +339,7 @@ public class PanelDeDibujo extends JPanel {
                     
                 }
                
-                                    
+                          
                 repaint();
                 
                 
@@ -328,9 +349,10 @@ public class PanelDeDibujo extends JPanel {
             public void mouseMoved(MouseEvent e) {
                 panel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
-        });
+        }
+        );
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -345,8 +367,9 @@ public class PanelDeDibujo extends JPanel {
         
             
     }
-    
+
     public JPanel getBaraDeHerramientas() {
         return barraDeHerramientas;
     }
+
 }
