@@ -13,34 +13,17 @@ import java.awt.Rectangle;
  *
  * @author JanCarlosDM
  */
-public class Elipse extends Figura {
+public class Elipse extends FiguraRellenable {
 
     int x;
     int y;
     int anchura;
     int altura;
 
-    public Elipse(Color color, Color color2, Boolean relleno, Point ubicacion) {
-        //super(color, color2, relleno);
-        this.x = ubicacion.x;
-        this.y = ubicacion.y;
-        this.anchura = 1;
-        this.altura = 1;
-
-    }
-
-    public Elipse(Boolean relleno, Point ubicacion) {
-
-        this.x = ubicacion.x;
-        this.y = ubicacion.y;
-        this.anchura = 1;
-        this.altura = 1;
-
-    }
-
-    public Elipse(Point ubicacion) {
-        this.x = ubicacion.x;
-        this.y = ubicacion.y;
+    public Elipse(Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual) {
+        super(colorDeFondo, colorDeContorno, relleno, puntoActual);
+        this.x = puntoActual.x;
+        this.y = puntoActual.y;
         this.anchura = 1;
         this.altura = 1;
 
@@ -55,12 +38,16 @@ public class Elipse extends Figura {
             x = this.x;
             y = this.y;
         }
+        if (relleno) {
+            g.setColor(colorDeFondo);
+            g.fillOval(x, y, Math.abs(anchura / 6), (int) Math.abs(altura / 0.9));
+        }
 
-        g.setColor(Color.GREEN);
+        g.setColor(colorDeContorno);
         g.drawOval(x, y, Math.abs(anchura / 6), (int) Math.abs(altura / 0.9));
 
-        g.setColor(Color.RED);
-        g.fillOval(x, y, Math.abs(anchura / 6), (int) Math.abs(altura / 0.9));
+        
+        this.setContorno(new Rectangle(x, y, anchura, altura));
     }
 
     public void actualizar(Point puntoActual) {
