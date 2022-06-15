@@ -279,7 +279,7 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new MediaLuna(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonCirculo.isSelected() ) {
-                    figuraActual = new Circulo( puntoActual );
+                    figuraActual = new Circulo( colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual );
                 }
                 
                 figuras.add(figuraActual);
