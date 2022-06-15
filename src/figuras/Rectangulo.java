@@ -13,19 +13,19 @@ import java.awt.Rectangle;
  *
  * @author josearielpereyra
  */
-public class Rectangulo extends Figura {
+public class Rectangulo extends FiguraRellenable {
 
     int x;
     int y;
     int anchura;
     int altura;
     
-    protected Rectangle rectangulo;
+    public Rectangle rectangulo;
 
-    public Rectangulo(Point ubicacion ,Color ColorDePrimerPlano, Color ColorDeSegundoPlano) {
-        super(ColorDePrimerPlano, ColorDeSegundoPlano);
-        this.x = ubicacion.x;
-        this.y = ubicacion.y;
+    public Rectangulo( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
+        super(colorDeFondo, colorDeContorno, relleno, puntoActual);
+        this.x = puntoActual.x;
+        this.y = puntoActual.y;
         this.anchura = 1;
         this.altura = 1;
         rectangulo = new Rectangle(x, y, anchura, altura);
@@ -36,12 +36,16 @@ public class Rectangulo extends Figura {
         int y = rectangulo.y;
         int anchura = rectangulo.width;
         int altura = rectangulo.height;
-        
-        g.setColor(getColorDePrimerPlano());
-        g.drawRect(x, y, anchura, altura);
 
-        g.setColor(getColorDeSegundoPlano());
-        g.fillRect(x, y, anchura, altura);
+        if(relleno) {
+            g.setColor(colorDeFondo);
+            g.fillRect(x, y, anchura, altura);
+        }
+
+        g.setColor(colorDeContorno);
+        g.drawRect(x, y, anchura, altura);
+        
+        this.setContorno(new Rectangle(x, y, anchura, altura));
     }
 
     public void actualizar(Point puntoActual) {
@@ -51,8 +55,8 @@ public class Rectangulo extends Figura {
         int x = anchura < 0 ? this.x + anchura : this.x;
         int y = altura < 0 ? this.y + altura : this.y;
         rectangulo = new Rectangle(x, y, Math.abs(anchura), Math.abs(altura));
-
-        System.out.println(this.toString());
+        
+        //System.out.println(this.toString());
     }
 
     @Override
