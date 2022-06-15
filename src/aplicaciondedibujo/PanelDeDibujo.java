@@ -132,6 +132,7 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonHexagono = new JToggleButton("Hexagono");
         JToggleButton botonEscaleno = new JToggleButton("Escaleno");
         JToggleButton botonTrianguloRectangulo = new JToggleButton("Triangulo Rectangulo");
+        JToggleButton botonElipse = new JToggleButton("Elipse");
         JToggleButton botonAnillo = new JToggleButton("Anillo");
         JToggleButton botonBorrador = new JToggleButton("Borrador");
         JToggleButton botonParalelogramo = new JToggleButton("Paralelogramo");
@@ -154,6 +155,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonHexagono);
         barraDeHerramientas.add(botonEscaleno);
         barraDeHerramientas.add(botonTrianguloRectangulo);
+        barraDeHerramientas.add(botonElipse);
         barraDeHerramientas.add(botonAnillo);
         barraDeHerramientas.add(botonBorrador);
         barraDeHerramientas.add(botonParalelogramo);
@@ -179,6 +181,8 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonHexagono);
         grupoBotones.add(botonEscaleno);
         grupoBotones.add(botonTrianguloRectangulo);
+        grupoBotones.add(botonElipse);
+
         grupoBotones.add(botonAnillo);
         grupoBotones.add(botonCometa);
         grupoBotones.add(botonOctagono);
@@ -190,7 +194,6 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonFlecha);
         grupoBotones.add(botonDibujoLibre);
         grupoBotones.add(botonSemiCirculo);
-      
       
         Color colorDeContorno = Color.red;
         Color colorDeFondo = Color.black;
@@ -247,6 +250,9 @@ public class PanelDeDibujo extends JPanel {
                 }
                 else if( botonTrianguloRectangulo.isSelected() ) {
                    figuraActual = new TrianguloRectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
+                }
+                else if( botonElipse.isSelected() ) {
+                   figuraActual = new Elipse(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
                 }
                 else if( botonAnillo.isSelected() ) {
                    figuraActual = new Anillo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
