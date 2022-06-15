@@ -1,32 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package figuras;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
+import java.awt.*;
 
-/**
- *
- * @author frenn
- */
-public class Pentagono extends FiguraRellenable{
-    
-    int x;
-    int y;
+public class Rombo extends FiguraRellenable {
+
     int anchura;
     int altura;
-    Marco marco;
-    
-    public Pentagono( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
+    boolean terminado;
+    int x, y;
+    public int[] coordenadasRomboX;
+    public int[] coordenadasRomboY;
+
+    public Rombo( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
         super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         this.x = puntoActual.x;
         this.y = puntoActual.y;
         this.anchura = 1;
         this.altura = 1;
+        terminado = false;
+
     }
 
     @Override
@@ -39,17 +31,20 @@ public class Pentagono extends FiguraRellenable{
         Point punto1 = new Point(x, y + altura / 2);
         Point punto2 = new Point(x + anchura / 2, y);
         Point punto3 = new Point(x + anchura, y + altura / 2);
-        Point punto4 = new Point((int) (x + anchura * 0.8), y + altura);
-        Point punto5 = new Point((int) (x + anchura * 0.2), y + altura);
+        Point punto4 = new Point(x + anchura / 2, y + altura);
+
+        coordenadasRomboX = new int[]{punto1.x, punto2.x, punto3.x, punto4.x};
+        coordenadasRomboY = new int[]{punto1.y, punto2.y, punto3.y, punto4.y};
 
         if(relleno) {
             g.setColor(colorDeFondo);
-            g.fillPolygon(new int[]{punto1.x, punto2.x, punto3.x, punto4.x, punto5.x}, new int[]{punto1.y, punto2.y, punto3.y, punto4.y, punto5.y}, 5);
+            g.fillPolygon(new int[]{punto1.x, punto2.x, punto3.x, punto4.x},
+                new int[]{punto1.y, punto2.y, punto3.y, punto4.y}, 4);
         }
         
         g.setColor(colorDeContorno);
-        g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x, punto4.x, punto5.x}, new int[]{punto1.y, punto2.y, punto3.y, punto4.y, punto5.y}, 5);
-        
+        g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x, punto4.x},
+                new int[]{punto1.y, punto2.y, punto3.y, punto4.y}, 4);
         this.setContorno(new Rectangle(x, y, anchura, altura));
     }
 
@@ -57,5 +52,14 @@ public class Pentagono extends FiguraRellenable{
     public void actualizar(Point puntoActual) {
         this.anchura = puntoActual.x - x;
         this.altura = puntoActual.y - y;
+    }
+
+    public boolean estaTerminado() {
+
+        return terminado;
+    }
+
+    public void terminar() {
+        terminado = true;
     }
 }

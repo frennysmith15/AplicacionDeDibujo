@@ -11,15 +11,16 @@ import java.awt.Rectangle;
 
 /**
  *
- * @author frenn
+ * @author Angel Fernandez
  */
-public class TrianguloRectangulo extends FiguraRellenable{
+public class Circulo extends FiguraRellenable {
+
     int x;
     int y;
     int anchura;
     int altura;
 
-    public TrianguloRectangulo( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
+    public Circulo(Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual) {
         super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         this.x = puntoActual.x;
         this.y = puntoActual.y;
@@ -33,23 +34,18 @@ public class TrianguloRectangulo extends FiguraRellenable{
     }
 
     public void dibujar(Graphics g) {
-        int x = this.anchura < 0 ? this.x + this.anchura : this.x;
-        int y = this.altura < 0 ? this.y + this.altura : this.y;
-        int anchura = Math.abs(this.anchura);
-        int altura = Math.abs(this.altura);
 
-        Point punto1 = new Point(x, y + altura);
-        Point punto2 = new Point(x, y);
-        Point punto3 = new Point(x + anchura, y + altura);
+        int x = (this.anchura < 0) ? this.x + anchura : this.x;
+        int y = (this.altura < 0) ? this.y + altura : this.y;
 
-        if(relleno) {
+        if (relleno) {
             g.setColor(colorDeFondo);
-            g.fillPolygon(new int[]{punto1.x, punto2.x, punto3.x}, new int[]{punto1.y, punto2.y, punto3.y}, 3);
+            g.fillOval(x, y, Math.abs(anchura), Math.abs(altura));
         }
-        
         g.setColor(colorDeContorno);
-        g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x}, new int[]{punto1.y, punto2.y, punto3.y}, 3);
+        g.drawOval(x, y, Math.abs(anchura), Math.abs(altura));
         
         this.setContorno(new Rectangle(x, y, anchura, altura));
     }
+
 }
