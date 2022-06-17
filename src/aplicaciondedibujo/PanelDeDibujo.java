@@ -6,21 +6,19 @@ package aplicaciondedibujo;
 
 import figuras.Figura;
 import figuras.Linea;
-import figuras.Poligono;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-
+import figuras.Rombo;
 import figuras.Rectangulo;
 import figuras.Triangulo;
 import java.awt.FlowLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JToggleButton;
-
+import figuras.Corazon;
 /**
  *
  * @author josearielpereyra
@@ -39,17 +37,24 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonLinea = new JToggleButton("Linea");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
+        JToggleButton botonRombo = new JToggleButton("Rombo");
+        JToggleButton botonCorazon = new JToggleButton("Corazon");
         
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRectangulo);
         barraDeHerramientas.add(botonPoligono);
+        barraDeHerramientas.add(botonRombo);
+        barraDeHerramientas.add(botonCorazon);
         
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonRectangulo);
         grupoBotones.add(botonPoligono);
+        grupoBotones.add(botonRombo);
+        grupoBotones.add(botonCorazon);
         
         addMouseListener( new MouseAdapter() {
+      
             @Override
             public void mousePressed(MouseEvent e) {
                 Point puntoActual = e.getPoint();
@@ -66,9 +71,16 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new Triangulo( puntoActual );
                 }
                 
+                else if( botonRombo.isSelected() ) {
+                    figuraActual = new Rombo( puntoActual );
+                }
                 
+                 else if( botonCorazon.isSelected() ) {
+                    figuraActual = new Corazon( puntoActual );
+              
+                }
                 
-                
+                                
                 figuras.add(figuraActual);
 
                 repaint(); 
@@ -90,9 +102,9 @@ public class PanelDeDibujo extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (Figura figura : figuras) {
+        figuras.stream().forEach((figura) -> {
             figura.dibujar(g);
-        }
+        });
     }
     
     public JPanel getBaraDeHerramientas() {
