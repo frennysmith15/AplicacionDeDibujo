@@ -149,6 +149,7 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonTrevor = new JToggleButton("TrevorDeCuatroHojas");
         JToggleButton botonEstrella = new JToggleButton("Estrella");
         JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
+        JToggleButton botonCuadrado = new JToggleButton("Cuadrado");
         JToggleButton botonTriangulo = new JToggleButton("Triangulo");
         JToggleButton botonPentagono = new JToggleButton("Pentagono");
         JToggleButton botonHexagono = new JToggleButton("Hexagono");
@@ -188,6 +189,7 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonCometa);
         barraDeHerramientas.add(botonDibujoLibre);
         barraDeHerramientas.add(botonSemiCirculo);
+        barraDeHerramientas.add(botonCuadrado);
 
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
@@ -198,6 +200,7 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonTrevor);
         grupoBotones.add(botonEstrella);
         grupoBotones.add(botonRectangulo);
+        grupoBotones.add(botonCuadrado);
         grupoBotones.add(botonTriangulo);
         grupoBotones.add(botonPentagono);
         grupoBotones.add(botonHexagono);
@@ -304,6 +307,8 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new MediaLuna(colorDeFondo, colorDeContorno, relleno, puntoActual);
                 } else if (botonCirculo.isSelected()) {
                     figuraActual = new Circulo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonCuadrado.isSelected()) {
+                    figuraActual = new Cuadrado(colorDeFondo, colorDeContorno, relleno, puntoActual);
                 }
 
                 figuras.add(figuraActual);
