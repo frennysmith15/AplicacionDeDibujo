@@ -129,10 +129,10 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas = new JPanel();
         seleccionDeColores = new JPanel();
         barraDeHerramientas.setLayout(new GridLayout(2, 10));
-        seleccionDeColores.setLayout(new GridLayout(2,1));
+        seleccionDeColores.setLayout(new GridLayout(2, 1));
         JCheckBox CBrelleno = new JCheckBox("Rellenar");
         relleno = false;
-        
+
         JButton botonSelecionarColor = new JButton("SelecionarColor");
         seleccionDeColores.add(botonSelecionarColor);
         seleccionDeColores.add(CBrelleno);
@@ -164,6 +164,7 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonFlecha = new JToggleButton("Flecha");
         JToggleButton botonCometa = new JToggleButton("Cometa");
         JToggleButton botonOctagono = new JToggleButton("Octagono");
+        JToggleButton botonCorazon = new JToggleButton("Corazon");
 
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRombo);
@@ -173,6 +174,8 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonCruz);
         barraDeHerramientas.add(botonTrevor);
         barraDeHerramientas.add(botonEstrella);
+        barraDeHerramientas.add(botonCuadrado);
+        barraDeHerramientas.add(botonTrapecio);
         barraDeHerramientas.add(botonRectangulo);
         barraDeHerramientas.add(botonTriangulo);
         barraDeHerramientas.add(botonPentagono);
@@ -190,9 +193,8 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonCometa);
         barraDeHerramientas.add(botonDibujoLibre);
         barraDeHerramientas.add(botonSemiCirculo);
-        barraDeHerramientas.add(botonCuadrado);
-        barraDeHerramientas.add(botonTrapecio);
-      
+        barraDeHerramientas.add(botonCorazon);
+
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonPoligono);
@@ -221,13 +223,14 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonFlecha);
         grupoBotones.add(botonDibujoLibre);
         grupoBotones.add(botonSemiCirculo);
-      grupoBotones.add(botonTrapecio);
-
+        grupoBotones.add(botonTrapecio);
+        grupoBotones.add(botonCorazon);
+        
         botonLinea.setSelected(true);
 
         colorDeContorno = Color.BLACK;
         colorDeFondo = Color.WHITE;
-        
+
         //Evento de button selecionar colores
         ActionListener ActionButoon = new ActionListener() {
             @Override
@@ -239,14 +242,13 @@ public class PanelDeDibujo extends JPanel {
             }
         };
         botonSelecionarColor.addActionListener(ActionButoon);
-        
-         CBrelleno.addItemListener(new ItemListener() {    
-             public void itemStateChanged(ItemEvent e) {                 
-                relleno = e.getStateChange()==1 ? true : false;     
-             }    
-          });    
-  
-        
+
+        CBrelleno.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                relleno = e.getStateChange() == 1 ? true : false;
+            }
+        });
+
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -312,11 +314,11 @@ public class PanelDeDibujo extends JPanel {
                     figuraActual = new Circulo(colorDeFondo, colorDeContorno, relleno, puntoActual);
                 } else if (botonCuadrado.isSelected()) {
                     figuraActual = new Cuadrado(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonTrapecio.isSelected()) {
+                    figuraActual = new Trapecio(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonCorazon.isSelected()) {
+                    figuraActual = new Corazon(colorDeFondo, colorDeContorno, relleno, puntoActual);
                 }
-                  else if( botonTrapecio.isSelected() ) {
-                    figuraActual = new Trapecio( puntoActual );
-                }
-      
 
                 figuras.add(figuraActual);
                 repaint();
@@ -380,7 +382,7 @@ public class PanelDeDibujo extends JPanel {
     public JPanel getBaraDeHerramientas() {
         return barraDeHerramientas;
     }
-    
+
     public JPanel getSeleccionDeColores() {
         return seleccionDeColores;
     }

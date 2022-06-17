@@ -7,12 +7,13 @@ package figuras;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  *
  * @author tlr16
  */
-public class Trapecio extends Figura {
+public class Trapecio extends FiguraRellenable {
 
     Point puntoInicial;
     Point puntoFinal;
@@ -21,7 +22,8 @@ public class Trapecio extends Figura {
     int anchura;
     int altura;
 
-    public Trapecio(Point puntoActual) {
+    public Trapecio(Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual) {
+        super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         this.puntoInicial = puntoActual;
         this.x = puntoInicial.x;
         this.y = puntoInicial.y;
@@ -45,9 +47,14 @@ public class Trapecio extends Figura {
         Point punto3 = new Point(x + anchura, y + altura);
         Point punto4 = new Point((int) (x + anchura - (anchura * 0.40)), y);
 
-        g.setColor(Color.RED);
-        g.fillPolygon(new int[]{punto1.x, punto2.x, punto3.x, punto4.x}, new int[]{punto1.y, punto2.y, punto3.y, punto4.y}, 4);
-        g.setColor(Color.GREEN);
+        if(relleno) {
+            g.setColor(colorDeFondo);
+            g.fillPolygon(new int[]{punto1.x, punto2.x, punto3.x, punto4.x}, new int[]{punto1.y, punto2.y, punto3.y, punto4.y}, 4);
+        }
+        
+        g.setColor(colorDeContorno);
         g.drawPolygon(new int[]{punto1.x, punto2.x, punto3.x, punto4.x}, new int[]{punto1.y, punto2.y, punto3.y, punto4.y}, 4);
-      }
-    }    
+        
+        this.setContorno(new Rectangle((int) (x - (anchura * 0.40)), y,(int) (anchura *1.40), altura));
+    }
+}
