@@ -11,50 +11,42 @@ import java.awt.Rectangle;
 
 /**
  *
- * @author josearielpereyra
+ * @author Angel Fernandez
  */
-public class Triangulo extends FiguraRellenable{
-    
+public class Circulo extends FiguraRellenable {
+
     int x;
     int y;
     int anchura;
     int altura;
 
-    public Triangulo( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
+    public Circulo(Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual) {
         super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         this.x = puntoActual.x;
         this.y = puntoActual.y;
         this.anchura = 1;
         this.altura = 1;
-        
     }
 
-
-    @Override
-    public void dibujar(Graphics g) {
-        
-       int[] coordenadasX = {x, x + anchura/2, x + anchura};
-       int[] coordenadasY = {y + altura, y, y + altura};
-       
-        if(relleno) {
-            g.setColor(colorDeFondo);
-            g.fillPolygon(coordenadasX, coordenadasY, 3);
-        }
-        
-        g.setColor(colorDeContorno);
-        g.drawPolygon(coordenadasX, coordenadasY, 3);
-
-        this.setContorno(new Rectangle(x, y, anchura, altura));
-    }
-    
-    @Override
     public void actualizar(Point puntoActual) {
         this.anchura = puntoActual.x - x;
         this.altura = puntoActual.y - y;
-        
-        int x = anchura < 0 ? this.x + anchura : this.x;
-        int y = altura < 0 ? this.y + altura : this.y;
-
     }
-    
+
+    public void dibujar(Graphics g) {
+
+        int x = (this.anchura < 0) ? this.x + anchura : this.x;
+        int y = (this.altura < 0) ? this.y + altura : this.y;
+
+        if (relleno) {
+            g.setColor(colorDeFondo);
+            g.fillOval(x, y, Math.abs(anchura), Math.abs(altura));
+        }
+        g.setColor(colorDeContorno);
+        g.drawOval(x, y, Math.abs(anchura), Math.abs(altura));
+        
+        
+        this.setContorno(new Rectangle(x, y, anchura, altura));
+    }
+
 }

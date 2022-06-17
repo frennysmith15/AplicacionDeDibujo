@@ -4,37 +4,39 @@
  */
 package figuras;
 
+import aplicaciondedibujo.PanelDeDibujo;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 
 /**
  *
  * @author frenn
  */
-public class FiguraRellenable extends Figura{
-    
+public abstract class FiguraRellenable extends Figura{
+    protected Rectangle contorno;
     protected Color colorDeFondo;
-    protected Color colorDeContorno;
     protected Boolean relleno;
-
-    public FiguraRellenable(Color colorDeFondo, Color colorDeContorno, Boolean relleno){
-        this.colorDeContorno = colorDeContorno;
+    protected Point puntoActual;
+    
+    public FiguraRellenable(Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual){
+        super.colorDeContorno = colorDeContorno;
         this.colorDeFondo = colorDeFondo;
         this.relleno = relleno;
+        this.puntoActual = puntoActual;
     }
     
-    
-    
-    @Override
-    public void dibujar(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void actualizar(Point puntoActual) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Rectangle getContorno() {
+        return contorno;
     }
     
+    public void setContorno(Rectangle contorno) {
+        this.contorno = contorno;
+    }
     
+    public void dibujarMarco(Graphics g) {
+        Marco marco = Marco.obtenerInstancia(PanelDeDibujo.panel, puntoActual, getContorno());       
+        marco.dibujar(g);
+    }
 }

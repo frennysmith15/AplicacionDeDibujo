@@ -11,50 +11,56 @@ import java.awt.Rectangle;
 
 /**
  *
- * @author josearielpereyra
+ * @author JanCarlosDM
  */
-public class Triangulo extends FiguraRellenable{
-    
+public class Elipse extends FiguraRellenable {
+
     int x;
     int y;
     int anchura;
     int altura;
 
-    public Triangulo( Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual ) {
+    public Elipse(Color colorDeFondo, Color colorDeContorno, Boolean relleno, Point puntoActual) {
         super(colorDeFondo, colorDeContorno, relleno, puntoActual);
         this.x = puntoActual.x;
         this.y = puntoActual.y;
         this.anchura = 1;
         this.altura = 1;
-        
+
     }
 
-
-    @Override
     public void dibujar(Graphics g) {
-        
-       int[] coordenadasX = {x, x + anchura/2, x + anchura};
-       int[] coordenadasY = {y + altura, y, y + altura};
-       
-        if(relleno) {
-            g.setColor(colorDeFondo);
-            g.fillPolygon(coordenadasX, coordenadasY, 3);
+        int x = 0, y = 0;
+        if (this.anchura < 0) {
+            x = this.x + anchura;
+            y = this.y + altura;
+        } else {
+            x = this.x;
+            y = this.y;
         }
-        
-        g.setColor(colorDeContorno);
-        g.drawPolygon(coordenadasX, coordenadasY, 3);
+        if (relleno) {
+            g.setColor(colorDeFondo);
+            g.fillOval(x, y, Math.abs(anchura / 6), (int) Math.abs(altura / 0.9));
+        }
 
+        g.setColor(colorDeContorno);
+        g.drawOval(x, y, Math.abs(anchura / 6), (int) Math.abs(altura / 0.9));
+
+        
         this.setContorno(new Rectangle(x, y, anchura, altura));
     }
-    
-    @Override
+
     public void actualizar(Point puntoActual) {
         this.anchura = puntoActual.x - x;
         this.altura = puntoActual.y - y;
-        
-        int x = anchura < 0 ? this.x + anchura : this.x;
-        int y = altura < 0 ? this.y + altura : this.y;
+
+        System.out.println(this.toString());
 
     }
-    
+
+    @Override
+    public String toString() {
+        return String.format("x: %d, y: %d, anchura: %d, altura: %d\n", x, y, anchura, altura);
+    }
+
 }
