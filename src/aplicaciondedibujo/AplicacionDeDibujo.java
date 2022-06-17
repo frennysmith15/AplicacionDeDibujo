@@ -5,10 +5,16 @@
 package aplicaciondedibujo;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SpringLayout;
 
 /**
  *
@@ -18,6 +24,7 @@ public class AplicacionDeDibujo extends JFrame{
     
     public static PanelDeDibujo panelDeDibujo;
     BarraMenu barraDeMenu;
+    JPanel herramientas;
     
     public AplicacionDeDibujo() throws HeadlessException {
         setTitle("Aplicacion de Dibujo");
@@ -28,8 +35,15 @@ public class AplicacionDeDibujo extends JFrame{
         panelDeDibujo = new PanelDeDibujo();
         panelDeDibujo.setBackground(Color.WHITE);
         barraDeMenu = new BarraMenu();
+     
+        herramientas = new JPanel();
+        herramientas.setLayout(new BorderLayout());
+        herramientas.add(panelDeDibujo.getBaraDeHerramientas(), BorderLayout.CENTER);
+        herramientas.add(panelDeDibujo.getSeleccionDeColores(), BorderLayout.EAST);
         
-        this.add(panelDeDibujo.getBaraDeHerramientas(), BorderLayout.NORTH);
+         
+        
+        this.add(herramientas, BorderLayout.NORTH);
         this.add(panelDeDibujo, BorderLayout.CENTER);
         this.setJMenuBar(barraDeMenu);
     }

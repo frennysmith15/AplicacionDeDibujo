@@ -13,34 +13,12 @@ import java.awt.Canvas;
  * @author josearielpereyra
  */
 public abstract class Figura {
-
+    
+    protected Color colorDeContorno;
+    
     public abstract void dibujar(Graphics g);
 
     public abstract void actualizar(Point puntoActual);
 
-    //color actracto 
-    private Color colorDePrimerPlano;
-    private Color colorDeSegundoPlano;
-
-    public Figura(Color colorDePrimerPlano, Color colorDeSegundoPlano) {
-        this.colorDePrimerPlano = colorDePrimerPlano;
-        this.colorDeSegundoPlano = colorDeSegundoPlano;
-    }
-
-    public Color getColorDePrimerPlano() {
-        return colorDePrimerPlano;
-    }
-
-    public Color getColorDeSegundoPlano() {
-        return colorDeSegundoPlano;
-    }
-
-    public void setColorDePrimerPlano(Color colorDePrimerPlano) {
-        this.colorDePrimerPlano = colorDePrimerPlano;
-    }
-
-    public void setColorDeSegundoPlano(Color colorDeSegundoPlano) {
-        this.colorDeSegundoPlano = colorDeSegundoPlano;
-    }
 
 }

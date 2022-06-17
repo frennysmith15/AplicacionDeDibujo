@@ -16,12 +16,23 @@ import javax.swing.ButtonGroup;
 import javax.swing.JToggleButton;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.io.File;
 import javax.swing.JFileChooser;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.beans.EventHandler;
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JColorChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -33,47 +44,51 @@ public class PanelDeDibujo extends JPanel {
     public static PanelDeDibujo panel;
     Figura figuraActual;
     ArrayList<Figura> figuras = new ArrayList<>();
-    Stack<Figura> figurasDeshacer = new Stack<>();;
+    Stack<Figura> figurasDeshacer = new Stack<>();
     JPanel barraDeHerramientas;
+    JPanel seleccionDeColores;
+
+    Color colorDeContorno;
+    Color colorDeFondo;
+    Boolean relleno;
 
     File archivo;
-    
+
     public void rehacer() {
-        if(!figurasDeshacer.isEmpty()) {
+        if (!figurasDeshacer.isEmpty()) {
             figuras.add(figurasDeshacer.pop());
 
             repaint();
         }
     }
-    
+
     public void deshacer() {
-        if(!figuras.isEmpty()) {
+        if (!figuras.isEmpty()) {
             figurasDeshacer.push(figuras.remove(figuras.size() - 1));
 
             repaint();
         }
     }
-    
+
     public void guardar() {
         try {
-            if(archivo != null) {
+            if (archivo != null) {
                 BufferedImage imagen = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
                 Graphics2D grafico = imagen.createGraphics();
                 this.paint(grafico);
                 grafico.dispose();
-                
+
                 String ruta = archivo.getPath();
                 String extension = ruta.substring(ruta.lastIndexOf(".") + 1);
                 ImageIO.write(imagen, extension, archivo);
-            }
-            else {
+            } else {
                 guardarComo();
             }
-        }catch(Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     public void guardarComo() {
         BufferedImage imagen = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
         Graphics2D grafico = imagen.createGraphics();
@@ -100,7 +115,6 @@ public class PanelDeDibujo extends JPanel {
                     ruta = ruta.substring(0, indice);
                 }
 
-                
                 archivo = new File(ruta + extension);
                 ImageIO.write(imagen, extension.replace(".", ""), archivo);
             } catch (Exception ex) {
@@ -108,17 +122,25 @@ public class PanelDeDibujo extends JPanel {
             }
         }
     }
-    
+
     public PanelDeDibujo() {
         panel = this;
         this.setLayout(null);
         barraDeHerramientas = new JPanel();
+        seleccionDeColores = new JPanel();
         barraDeHerramientas.setLayout(new GridLayout(2, 10));
+        seleccionDeColores.setLayout(new GridLayout(2,1));
+        JCheckBox CBrelleno = new JCheckBox("Rellenar");
+        relleno = false;
         
+        JButton botonSelecionarColor = new JButton("SelecionarColor");
+        seleccionDeColores.add(botonSelecionarColor);
+        seleccionDeColores.add(CBrelleno);
+
         JToggleButton botonLinea = new JToggleButton("Linea");
         JToggleButton botonDibujoLibre = new JToggleButton("Lapiz");
         JToggleButton botonSemiCirculo = new JToggleButton("SemiCirculo");
-          JToggleButton botonPacman = new JToggleButton("Pacman");
+        JToggleButton botonPacman = new JToggleButton("Pacman");
         JToggleButton botonRombo = new JToggleButton("Rombo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
         JToggleButton botonCirculo = new JToggleButton("Circulo");
@@ -140,9 +162,9 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonFlecha = new JToggleButton("Flecha");
         JToggleButton botonCometa = new JToggleButton("Cometa");
         JToggleButton botonOctagono = new JToggleButton("Octagono");
-      
+
         barraDeHerramientas.add(botonLinea);
-        barraDeHerramientas.add(botonRombo);        
+        barraDeHerramientas.add(botonRombo);
         barraDeHerramientas.add(botonPoligono);
         barraDeHerramientas.add(botonCirculo);
         barraDeHerramientas.add(botonMediaLuna);
@@ -164,9 +186,9 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonFlecha);
         barraDeHerramientas.add(botonOctagono);
         barraDeHerramientas.add(botonCometa);
-      barraDeHerramientas.add(botonDibujoLibre);
+        barraDeHerramientas.add(botonDibujoLibre);
         barraDeHerramientas.add(botonSemiCirculo);
-        
+
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonPoligono);
@@ -182,7 +204,7 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonEscaleno);
         grupoBotones.add(botonTrianguloRectangulo);
         grupoBotones.add(botonElipse);
-
+        grupoBotones.add(botonSelecionarColor);
         grupoBotones.add(botonAnillo);
         grupoBotones.add(botonCometa);
         grupoBotones.add(botonOctagono);
@@ -194,99 +216,81 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonFlecha);
         grupoBotones.add(botonDibujoLibre);
         grupoBotones.add(botonSemiCirculo);
-      
-        Color colorDeContorno;
-        Color colorDeFondo;
-        
+
         botonLinea.setSelected(true);
-        
-        barraDeHerramientas = new JPanel();
-        barraDeHerramientas.setLayout(new FlowLayout(FlowLayout
+
+        colorDeContorno = Color.BLACK;
+        colorDeFondo = Color.WHITE;
         
         //Evento de button selecionar colores
         ActionListener ActionButoon = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            
-            colorDeContorno = JColorChooser.showDialog(null, "Seleccione el color del contorno", colorDeContorno);
-            colorDeFondo = JColorChooser.showDialog(null, "Seleccione el color del interior", colorDeFondo);
+
+                colorDeContorno = JColorChooser.showDialog(null, "Seleccione el color del contorno", colorDeContorno);
+                colorDeFondo = JColorChooser.showDialog(null, "Seleccione el color del interior", colorDeFondo);
 
             }
         };
         botonSelecionarColor.addActionListener(ActionButoon);
-
-
-        addMouseListener( new MouseAdapter() {
+        
+         CBrelleno.addItemListener(new ItemListener() {    
+             public void itemStateChanged(ItemEvent e) {                 
+                relleno = e.getStateChange()==1 ? true : false;     
+             }    
+          });    
+  
+        
+        addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
 
-                Point puntoActual = e.getPoint();                
+                Point puntoActual = e.getPoint();
 
                 //decidir la figura que se va a dibujar
-                if( botonLinea.isSelected() ) {
-                    figuraActual = new Linea( puntoActual, colorDeContorno );
-                }
-                else if( botonPoligono.isSelected() ) {
-                    figuraActual = new Poligono(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonFlecha.isSelected() ) {
-                    figuraActual = new Flecha(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonRectangulo.isSelected() ) {
-                    figuraActual = new Rectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonDibujoLibre.isSelected() ) {
-                    figuraActual = new DibujoLibre( puntoActual, colorDeContorno );
-                }
-                else if( botonSemiCirculo.isSelected() ) {
-                    figuraActual = new SemiCirculo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonPacman.isSelected() ) {
-                    figuraActual = new Pacman(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonCruz.isSelected() ) {
-                    figuraActual = new Cruz(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                } 
-                else if( botonRombo.isSelected() ) {
-                    figuraActual = new Rombo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonEstrella.isSelected() ) {
-                    figuraActual = new Estrella(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if(botonTriangulo.isSelected() ) {
-                    figuraActual = new Triangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonPentagono.isSelected() ) {
-                   figuraActual = new Pentagono(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonHexagono.isSelected() ) {
-                   figuraActual = new Hexagono(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonEscaleno.isSelected() ) {
-                   figuraActual = new Escaleno(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonTrianguloRectangulo.isSelected() ) {
-                   figuraActual = new TrianguloRectangulo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonElipse.isSelected() ) {
-                   figuraActual = new Elipse(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonAnillo.isSelected() ) {
-                   figuraActual = new Anillo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonOctagono.isSelected() ) {
-                   figuraActual = new Octagono(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonCometa.isSelected() ) {
-                   figuraActual = new Cometa(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonBorrador.isSelected() ) {
-                   figuraActual = new Borrador( puntoActual);
-                }
-                else if( botonParalelogramo.isSelected() ) {
-                   figuraActual = new Paralelogramo(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if(botonBaldeDePintura.isSelected()) {
+                if (botonLinea.isSelected()) {
+                    figuraActual = new Linea(puntoActual, colorDeContorno);
+                } else if (botonPoligono.isSelected()) {
+                    figuraActual = new Poligono(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonFlecha.isSelected()) {
+                    figuraActual = new Flecha(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonRectangulo.isSelected()) {
+                    figuraActual = new Rectangulo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonDibujoLibre.isSelected()) {
+                    figuraActual = new DibujoLibre(puntoActual, colorDeContorno);
+                } else if (botonSemiCirculo.isSelected()) {
+                    figuraActual = new SemiCirculo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonPacman.isSelected()) {
+                    figuraActual = new Pacman(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonCruz.isSelected()) {
+                    figuraActual = new Cruz(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonRombo.isSelected()) {
+                    figuraActual = new Rombo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonEstrella.isSelected()) {
+                    figuraActual = new Estrella(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonTriangulo.isSelected()) {
+                    figuraActual = new Triangulo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonPentagono.isSelected()) {
+                    figuraActual = new Pentagono(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonHexagono.isSelected()) {
+                    figuraActual = new Hexagono(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonEscaleno.isSelected()) {
+                    figuraActual = new Escaleno(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonTrianguloRectangulo.isSelected()) {
+                    figuraActual = new TrianguloRectangulo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonElipse.isSelected()) {
+                    figuraActual = new Elipse(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonAnillo.isSelected()) {
+                    figuraActual = new Anillo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonOctagono.isSelected()) {
+                    figuraActual = new Octagono(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonCometa.isSelected()) {
+                    figuraActual = new Cometa(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonBorrador.isSelected()) {
+                    figuraActual = new Borrador(puntoActual);
+                } else if (botonParalelogramo.isSelected()) {
+                    figuraActual = new Paralelogramo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonBaldeDePintura.isSelected()) {
                     if (Marco.paneles != null) {
                         for (JPanel marcos : Marco.paneles) {
                             marcos.setVisible(false);
@@ -294,17 +298,14 @@ public class PanelDeDibujo extends JPanel {
                     }
                     figuraActual = new BaldeDePintura(PanelDeDibujo.this, colorDeContorno);
                     figuraActual.actualizar(puntoActual);
+                } else if (botonTrevor.isSelected()) {
+                    figuraActual = new TrevorDeCuatroHojas(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonMediaLuna.isSelected()) {
+                    figuraActual = new MediaLuna(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                } else if (botonCirculo.isSelected()) {
+                    figuraActual = new Circulo(colorDeFondo, colorDeContorno, relleno, puntoActual);
                 }
-                else if( botonTrevor.isSelected() ) {
-                    figuraActual = new TrevorDeCuatroHojas(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonMediaLuna.isSelected() ) {
-                    figuraActual = new MediaLuna(colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual);
-                }
-                else if( botonCirculo.isSelected() ) {
-                    figuraActual = new Circulo( colorDeFondo, colorDeContorno, Boolean.TRUE, puntoActual );
-                }
-                
+
                 figuras.add(figuraActual);
                 repaint();
 
@@ -319,32 +320,29 @@ public class PanelDeDibujo extends JPanel {
             ) {
                 Point puntoActual = e.getPoint();
 
-                figuraActual.actualizar( puntoActual );
-                
-                if(figuraActual instanceof FiguraRellenable) {
+                figuraActual.actualizar(puntoActual);
+
+                if (figuraActual instanceof FiguraRellenable) {
                     Marco marco = Marco.obtenerInstancia(PanelDeDibujo.panel, puntoActual, null);
                     marco.actualizar(puntoActual);
-                    JPanel[] panelesDelMarco = Marco.paneles; 
-                        for (JPanel marcos : panelesDelMarco) {
-                            marcos.setVisible(true);
-                        }
-                }
-                else {
-                    if(Marco.paneles != null) {
-                        JPanel[] panelesDelMarco = Marco.paneles; 
+                    JPanel[] panelesDelMarco = Marco.paneles;
+                    for (JPanel marcos : panelesDelMarco) {
+                        marcos.setVisible(true);
+                    }
+                } else {
+                    if (Marco.paneles != null) {
+                        JPanel[] panelesDelMarco = Marco.paneles;
                         for (JPanel marcos : panelesDelMarco) {
                             marcos.setVisible(false);
                         }
                     }
-                    
+
                 }
-               
-                          
+
                 repaint();
-                
-                
+
             }
-            
+
             @Override
             public void mouseMoved(MouseEvent e) {
                 panel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -360,16 +358,19 @@ public class PanelDeDibujo extends JPanel {
         for (Figura figura : figuras) {
             figura.dibujar(g);
         }
-        if(figuraActual instanceof FiguraRellenable) {
+        if (figuraActual instanceof FiguraRellenable) {
             ((FiguraRellenable) figuraActual).dibujarMarco(g);
-            
+
         }
-        
-            
+
     }
 
     public JPanel getBaraDeHerramientas() {
         return barraDeHerramientas;
+    }
+    
+    public JPanel getSeleccionDeColores() {
+        return seleccionDeColores;
     }
 
 }
