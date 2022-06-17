@@ -143,6 +143,7 @@ public class PanelDeDibujo extends JPanel {
         JToggleButton botonPacman = new JToggleButton("Pacman");
         JToggleButton botonRombo = new JToggleButton("Rombo");
         JToggleButton botonPoligono = new JToggleButton("Poligono");
+        JToggleButton botonTrapecio = new JToggleButton("Trapecio");
         JToggleButton botonCirculo = new JToggleButton("Circulo");
         JToggleButton botonMediaLuna = new JToggleButton("MediaLuna");
         JToggleButton botonCruz = new JToggleButton("Cruz");
@@ -190,7 +191,8 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonDibujoLibre);
         barraDeHerramientas.add(botonSemiCirculo);
         barraDeHerramientas.add(botonCuadrado);
-
+        barraDeHerramientas.add(botonTrapecio);
+      
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
         grupoBotones.add(botonPoligono);
@@ -219,6 +221,7 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonFlecha);
         grupoBotones.add(botonDibujoLibre);
         grupoBotones.add(botonSemiCirculo);
+      grupoBotones.add(botonTrapecio);
 
         botonLinea.setSelected(true);
 
@@ -310,6 +313,10 @@ public class PanelDeDibujo extends JPanel {
                 } else if (botonCuadrado.isSelected()) {
                     figuraActual = new Cuadrado(colorDeFondo, colorDeContorno, relleno, puntoActual);
                 }
+                  else if( botonTrapecio.isSelected() ) {
+                    figuraActual = new Trapecio( puntoActual );
+                }
+      
 
                 figuras.add(figuraActual);
                 repaint();
