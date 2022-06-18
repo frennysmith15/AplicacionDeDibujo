@@ -24,12 +24,15 @@ import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.beans.EventHandler;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JColorChooser;
@@ -248,7 +251,8 @@ public class PanelDeDibujo extends JPanel {
                 relleno = e.getStateChange() == 1 ? true : false;
             }
         });
-
+        
+        
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -258,46 +262,193 @@ public class PanelDeDibujo extends JPanel {
                 //decidir la figura que se va a dibujar
                 if (botonLinea.isSelected()) {
                     figuraActual = new Linea(puntoActual, colorDeContorno);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/linea.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonPoligono.isSelected()) {
                     figuraActual = new Poligono(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/poligono.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonFlecha.isSelected()) {
                     figuraActual = new Flecha(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/Flecha.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonRectangulo.isSelected()) {
                     figuraActual = new Rectangulo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/rectangulo.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonDibujoLibre.isSelected()) {
                     figuraActual = new DibujoLibre(puntoActual, colorDeContorno);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/lapiz.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonSemiCirculo.isSelected()) {
                     figuraActual = new SemiCirculo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/semiCirculo.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonPacman.isSelected()) {
                     figuraActual = new Pacman(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/pic.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonCruz.isSelected()) {
                     figuraActual = new Cruz(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/cruz.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonRombo.isSelected()) {
                     figuraActual = new Rombo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/rombo.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonEstrella.isSelected()) {
                     figuraActual = new Estrella(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/estrella.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonTriangulo.isSelected()) {
                     figuraActual = new Triangulo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/triangulo.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonPentagono.isSelected()) {
                     figuraActual = new Pentagono(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/pentagono.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonHexagono.isSelected()) {
                     figuraActual = new Hexagono(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/hexagono.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonEscaleno.isSelected()) {
                     figuraActual = new Escaleno(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/trianguloEscaleno.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonTrianguloRectangulo.isSelected()) {
                     figuraActual = new TrianguloRectangulo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/trianguloEquilatero.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonElipse.isSelected()) {
                     figuraActual = new Elipse(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/elipse.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonAnillo.isSelected()) {
                     figuraActual = new Anillo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/ring.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonOctagono.isSelected()) {
                     figuraActual = new Octagono(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/octagono.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonCometa.isSelected()) {
                     figuraActual = new Cometa(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/cometa.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonBorrador.isSelected()) {
                     figuraActual = new Borrador(puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/borrador.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonParalelogramo.isSelected()) {
                     figuraActual = new Paralelogramo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/paralelogramo.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonBaldeDePintura.isSelected()) {
                     if (Marco.paneles != null) {
                         for (JPanel marcos : Marco.paneles) {
@@ -305,19 +456,62 @@ public class PanelDeDibujo extends JPanel {
                         }
                     }
                     figuraActual = new BaldeDePintura(PanelDeDibujo.this, colorDeContorno);
+                    
                     figuraActual.actualizar(puntoActual);
                 } else if (botonTrevor.isSelected()) {
                     figuraActual = new TrevorDeCuatroHojas(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/trebol.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonMediaLuna.isSelected()) {
                     figuraActual = new MediaLuna(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/creciente.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonCirculo.isSelected()) {
                     figuraActual = new Circulo(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/circulo.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonCuadrado.isSelected()) {
                     figuraActual = new Cuadrado(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/cuadrado.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonTrapecio.isSelected()) {
                     figuraActual = new Trapecio(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/trapecio.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 } else if (botonCorazon.isSelected()) {
                     figuraActual = new Corazon(colorDeFondo, colorDeContorno, relleno, puntoActual);
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/corazon.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        excepcion.printStackTrace();
+                    }
                 }
 
                 figuras.add(figuraActual);
