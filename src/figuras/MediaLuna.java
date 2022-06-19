@@ -39,13 +39,11 @@ public class MediaLuna extends FiguraRellenable {
     }
 
     public void dibujar(Graphics g) {
-
-        if(relleno) {
-        g.setColor(colorDeFondo);
-        g.fillArc(puntoInicial.x, (int) (puntoFinal.y * 0.99), anchura, (int) (altura * 0.76), -170, 160);
-        
+        if (puntoInicial != null && puntoFinal != null) {
         }
+        
         g.setColor(colorDeContorno);
+        g.drawArc(puntoInicial.x, (int) (puntoFinal.y * 0.99), anchura, (int) (altura * 0.8), -170, 160);
         g.drawArc(puntoInicial.x, puntoFinal.y, anchura, altura, -190, 200);
         
         this.setContorno(new Rectangle(puntoInicial.x, puntoFinal.y, anchura, altura));
