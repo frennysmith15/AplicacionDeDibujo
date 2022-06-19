@@ -33,7 +33,6 @@ public class MediaLuna extends FiguraRellenable {
     }
 
     public void actualizar(Point puntoFinal) {
-        this.puntoFinal = puntoFinal;
         this.anchura = puntoFinal.x - x;
         this.altura = puntoFinal.y - y;
     }

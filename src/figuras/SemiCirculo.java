@@ -35,22 +35,25 @@ public class SemiCirculo extends FiguraRellenable {
         this.puntoFinal = puntoFinal;
         this.anchura = puntoFinal.x - x;
         this.altura = puntoFinal.y - y;
+        this.anchura = puntoFinal.x - x;
+        this.altura = puntoFinal.y - y;
     }
- 
+
+    @Override
     public void dibujar(Graphics g) {
-        if (puntoInicial != null && puntoFinal != null) {
+        int anchuras = Math.abs(this.anchura);
+        int alturas = Math.abs(this.altura);
+        int x = anchura < 0 ? this.x + anchura : this.x;
+        int y = altura < 0 ? this.y + altura : this.y;
 
         if (relleno) {
             g.setColor(colorDeFondo);
-            g.fillArc(x, y, anchura, puntoFinal.y, 0, 180);
+            g.fillArc(x, y, anchuras, alturas, 0, +180);
         }
         g.setColor(colorDeContorno);
-        g.drawLine(puntoInicial.x, ((int) (puntoFinal.y * 0.50) + y), puntoFinal.x, ((int) (puntoFinal.y * 0.50) + y));
-        g.drawArc(x, Math.abs(y), anchura, Math.abs(puntoFinal.y), 0, 180);
+        g.drawArc(x, y, anchuras, alturas, 0, +180);
 
         this.setContorno(new Rectangle(x, y, anchura, altura));
-
-        }
 
     }
 }
