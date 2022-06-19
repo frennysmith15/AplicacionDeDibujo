@@ -25,6 +25,14 @@ public class DibujoLibre extends Figura {
         this.colorDeContorno = colorDeContorno;
     }
 
+    public DibujoLibre(Point puntoActual) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public DibujoLibre(Color colorDeContorno, Point puntoActual) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     @Override
     public void dibujar(Graphics g) {
 
