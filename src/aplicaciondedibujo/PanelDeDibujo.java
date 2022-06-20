@@ -32,6 +32,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.beans.EventHandler;
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -140,35 +141,66 @@ public class PanelDeDibujo extends JPanel {
         seleccionDeColores.add(botonSelecionarColor);
         seleccionDeColores.add(CBrelleno);
 
-        JToggleButton botonLinea = new JToggleButton("Linea");
-        JToggleButton botonDibujoLibre = new JToggleButton("Lapiz");
-        JToggleButton botonSemiCirculo = new JToggleButton("SemiCirculo");
-        JToggleButton botonPacman = new JToggleButton("Pacman");
-        JToggleButton botonRombo = new JToggleButton("Rombo");
-        JToggleButton botonPoligono = new JToggleButton("Poligono");
-        JToggleButton botonTrapecio = new JToggleButton("Trapecio");
-        JToggleButton botonCirculo = new JToggleButton("Circulo");
-        JToggleButton botonMediaLuna = new JToggleButton("MediaLuna");
-        JToggleButton botonCruz = new JToggleButton("Cruz");
-        JToggleButton botonTrevor = new JToggleButton("TrevorDeCuatroHojas");
-        JToggleButton botonEstrella = new JToggleButton("Estrella");
-        JToggleButton botonRectangulo = new JToggleButton("Rectangulo");
-        JToggleButton botonCuadrado = new JToggleButton("Cuadrado");
-        JToggleButton botonTriangulo = new JToggleButton("Triangulo");
-        JToggleButton botonPentagono = new JToggleButton("Pentagono");
-        JToggleButton botonHexagono = new JToggleButton("Hexagono");
-        JToggleButton botonEscaleno = new JToggleButton("Escaleno");
-        JToggleButton botonTrianguloRectangulo = new JToggleButton("Triangulo Rectangulo");
-        JToggleButton botonElipse = new JToggleButton("Elipse");
-        JToggleButton botonAnillo = new JToggleButton("Anillo");
-        JToggleButton botonBorrador = new JToggleButton("Borrador");
-        JToggleButton botonParalelogramo = new JToggleButton("Paralelogramo");
-        JToggleButton botonBaldeDePintura = new JToggleButton("Bote de pintura");
-        JToggleButton botonFlecha = new JToggleButton("Flecha");
-        JToggleButton botonCometa = new JToggleButton("Cometa");
-        JToggleButton botonOctagono = new JToggleButton("Octagono");
-        JToggleButton botonCorazon = new JToggleButton("Corazon");
-
+        JToggleButton botonLinea = new JToggleButton();
+        JToggleButton botonDibujoLibre = new JToggleButton();
+        JToggleButton botonSemiCirculo = new JToggleButton();
+        JToggleButton botonPacman = new JToggleButton();
+        JToggleButton botonRombo = new JToggleButton();
+        JToggleButton botonPoligono = new JToggleButton();
+        JToggleButton botonTrapecio = new JToggleButton();
+        JToggleButton botonCirculo = new JToggleButton();
+        JToggleButton botonMediaLuna = new JToggleButton();
+        JToggleButton botonCruz = new JToggleButton();
+        JToggleButton botonTrevor = new JToggleButton();
+        JToggleButton botonEstrella = new JToggleButton();
+        JToggleButton botonRectangulo = new JToggleButton();
+        JToggleButton botonCuadrado = new JToggleButton();
+        JToggleButton botonTriangulo = new JToggleButton();
+        JToggleButton botonPentagono = new JToggleButton();
+        JToggleButton botonHexagono = new JToggleButton();
+        JToggleButton botonEscaleno = new JToggleButton();
+        JToggleButton botonTrianguloRectangulo = new JToggleButton();
+        JToggleButton botonElipse = new JToggleButton();
+        JToggleButton botonAnillo = new JToggleButton();
+        JToggleButton botonBorrador = new JToggleButton();
+        JToggleButton botonParalelogramo = new JToggleButton();
+        JToggleButton botonBaldeDePintura = new JToggleButton();
+        JToggleButton botonFlecha = new JToggleButton();
+        JToggleButton botonCometa = new JToggleButton();
+        JToggleButton botonOctagono = new JToggleButton();
+        JToggleButton botonCorazon = new JToggleButton();
+        
+//------Iconos de los botones 
+        botonLinea.setIcon(setIcono("/imagenes/linea.png"));
+        botonDibujoLibre.setIcon(setIcono("/imagenes/dibujolibreIcon.png"));
+        botonSemiCirculo.setIcon(setIcono("/imagenes/semiCirculo.png"));
+        botonPacman.setIcon(setIcono("/imagenes/pic.png"));
+        botonRombo.setIcon(setIcono("/imagenes/rombo.png"));
+        botonPoligono.setIcon(setIcono("/imagenes/poligono.png"));
+        botonTrapecio.setIcon(setIcono("/imagenes/trapecio.png"));
+        botonSelecionarColor.setIcon(setIcono("/imagenes/selectorIcon.png"));
+        botonMediaLuna.setIcon(setIcono("/imagenes/creciente.png"));
+        botonEstrella.setIcon(setIcono("/imagenes/estrella.png"));
+        botonTrevor.setIcon(setIcono("/imagenes/quatrebol.png"));
+        botonRectangulo.setIcon(setIcono("/imagenes/rectangulo.png"));
+        botonCuadrado.setIcon(setIcono("/imagenes/cuadrado.png"));
+        botonTriangulo.setIcon(setIcono("/imagenes/triangulo.png"));
+        botonPentagono.setIcon(setIcono("/imagenes/pentagono.png"));
+        botonHexagono.setIcon(setIcono("/imagenes/hexagono.png"));
+        botonEscaleno.setIcon(setIcono("/imagenes/trianguloEscaleno.png"));
+        botonTrianguloRectangulo.setIcon(setIcono("/imagenes/trianguloRectangulo.png"));
+        botonElipse.setIcon(setIcono("/imagenes/elipse.png"));
+        botonAnillo.setIcon(setIcono("/imagenes/ring.png"));
+        botonBorrador.setIcon(setIcono("/imagenes/borradorIcon.png"));
+        botonParalelogramo.setIcon(setIcono("/imagenes/paralelogramo.png"));
+        botonBaldeDePintura.setIcon(setIcono("/imagenes/baldePinturaIcon.png"));
+        botonFlecha.setIcon(setIcono("/imagenes/flecha.png"));
+        botonCometa.setIcon(setIcono("/imagenes/cometa.png"));
+        botonOctagono.setIcon(setIcono("/imagenes/octagono.png"));
+        botonCorazon.setIcon(setIcono("/imagenes/corazon.png"));
+        botonCirculo.setIcon(setIcono("/imagenes/circulo.png"));
+        botonCruz.setIcon(setIcono("/imagenes/cruz.png"));
+        
         barraDeHerramientas.add(botonLinea);
         barraDeHerramientas.add(botonRombo);
         barraDeHerramientas.add(botonPoligono);
@@ -187,16 +219,16 @@ public class PanelDeDibujo extends JPanel {
         barraDeHerramientas.add(botonTrianguloRectangulo);
         barraDeHerramientas.add(botonElipse);
         barraDeHerramientas.add(botonAnillo);
-        barraDeHerramientas.add(botonBorrador);
         barraDeHerramientas.add(botonParalelogramo);
         barraDeHerramientas.add(botonPacman);
-        barraDeHerramientas.add(botonBaldeDePintura);
         barraDeHerramientas.add(botonFlecha);
         barraDeHerramientas.add(botonOctagono);
         barraDeHerramientas.add(botonCometa);
-        barraDeHerramientas.add(botonDibujoLibre);
         barraDeHerramientas.add(botonSemiCirculo);
         barraDeHerramientas.add(botonCorazon);
+        barraDeHerramientas.add(botonDibujoLibre);
+        barraDeHerramientas.add(botonBorrador);
+        barraDeHerramientas.add(botonBaldeDePintura);
 
         ButtonGroup grupoBotones = new ButtonGroup();
         grupoBotones.add(botonLinea);
@@ -266,7 +298,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/linea.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonPoligono.isSelected()) {
@@ -275,16 +307,16 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/poligono.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonFlecha.isSelected()) {
                     figuraActual = new Flecha(colorDeFondo, colorDeContorno, relleno, puntoActual);
                     try {
-                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/Flecha.png")).getImage();
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/flecha.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonRectangulo.isSelected()) {
@@ -293,16 +325,16 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/rectangulo.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonDibujoLibre.isSelected()) {
                     figuraActual = new DibujoLibre(puntoActual, colorDeContorno);
                     try {
-                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/lapiz.png")).getImage();
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/pencil.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonSemiCirculo.isSelected()) {
@@ -311,7 +343,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/semiCirculo.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonPacman.isSelected()) {
@@ -320,7 +352,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/pic.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonCruz.isSelected()) {
@@ -329,7 +361,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/cruz.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonRombo.isSelected()) {
@@ -338,7 +370,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/rombo.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonEstrella.isSelected()) {
@@ -347,7 +379,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/estrella.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonTriangulo.isSelected()) {
@@ -356,7 +388,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/triangulo.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonPentagono.isSelected()) {
@@ -365,7 +397,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/pentagono.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonHexagono.isSelected()) {
@@ -374,7 +406,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/hexagono.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonEscaleno.isSelected()) {
@@ -383,16 +415,16 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/trianguloEscaleno.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonTrianguloRectangulo.isSelected()) {
                     figuraActual = new TrianguloRectangulo(colorDeFondo, colorDeContorno, relleno, puntoActual);
                     try {
-                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/trianguloEquilatero.png")).getImage();
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/trianguloRectangulo.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonElipse.isSelected()) {
@@ -401,7 +433,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/elipse.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonAnillo.isSelected()) {
@@ -410,7 +442,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/ring.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonOctagono.isSelected()) {
@@ -419,7 +451,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/octagono.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonCometa.isSelected()) {
@@ -428,7 +460,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/cometa.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonBorrador.isSelected()) {
@@ -437,7 +469,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/borrador.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonParalelogramo.isSelected()) {
@@ -446,7 +478,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/paralelogramo.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonBaldeDePintura.isSelected()) {
@@ -456,15 +488,21 @@ public class PanelDeDibujo extends JPanel {
                         }
                     }
                     figuraActual = new BaldeDePintura(PanelDeDibujo.this, colorDeContorno);
-                    
+                    try {
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/botePintura.png")).getImage();
+                        setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
+                    } catch (Exception excepcion) {
+                        System.out.println("ERROR no se puedo cargar el ICON");
+                        excepcion.printStackTrace();
+                    }
                     figuraActual.actualizar(puntoActual);
                 } else if (botonTrevor.isSelected()) {
                     figuraActual = new TrevorDeCuatroHojas(colorDeFondo, colorDeContorno, relleno, puntoActual);
                     try {
-                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/trebol.png")).getImage();
+                        Image imagen = new ImageIcon(getClass().getResource("/imagenes/quatrebol.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonMediaLuna.isSelected()) {
@@ -473,7 +511,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/creciente.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonCirculo.isSelected()) {
@@ -482,7 +520,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/circulo.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonCuadrado.isSelected()) {
@@ -491,7 +529,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/cuadrado.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonTrapecio.isSelected()) {
@@ -500,7 +538,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/trapecio.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 } else if (botonCorazon.isSelected()) {
@@ -509,7 +547,7 @@ public class PanelDeDibujo extends JPanel {
                         Image imagen = new ImageIcon(getClass().getResource("/imagenes/corazon.png")).getImage();
                         setCursor(Toolkit.getDefaultToolkit().createCustomCursor(imagen, new Point(0, 31), "custom cursor"));
                     } catch (Exception excepcion) {
-                        System.out.println("Ocurrio un error y no se pudo cargar la imagen");
+                        System.out.println("ERROR no se puedo cargar el ICON");
                         excepcion.printStackTrace();
                     }
                 }
@@ -573,6 +611,13 @@ public class PanelDeDibujo extends JPanel {
 
     }
 
+    public Icon setIcono(String url) {
+        ImageIcon icon = new ImageIcon(getClass().getResource(url));
+        int ancho = 35;
+        int alto = 35;
+        ImageIcon icono = new ImageIcon(icon.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
+        return icono;
+    }
     public JPanel getBaraDeHerramientas() {
         return barraDeHerramientas;
     }
