@@ -290,6 +290,7 @@ public class PanelDeDibujo extends JPanel {
 
                 Point puntoActual = e.getPoint();
 
+                
                 //decidir la figura que se va a dibujar
                 if (botonLinea.isSelected()) {
                     figuraActual = new Linea(puntoActual, colorDeContorno);
