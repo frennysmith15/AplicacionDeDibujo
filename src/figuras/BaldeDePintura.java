@@ -56,8 +56,6 @@ public class BaldeDePintura extends Figura{
             }
         }
         
-        Graphics2D g = imagen.createGraphics();
-        panel.paint(g);
     }
 
     private static boolean debeRellenarse(BufferedImage imagen, boolean[][] hits, int x, int y, int colorFuente, int colorObjetivo) {
@@ -92,6 +90,7 @@ public class BaldeDePintura extends Figura{
 
     @Override
     public void dibujar(Graphics g) {
+        g.setColor(colorDeContorno);
         for (Point punto : puntos) {
             g.drawLine(punto.x, punto.y, punto.x, punto.y);
         }
