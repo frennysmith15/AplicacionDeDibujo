@@ -261,7 +261,7 @@ public class PanelDeDibujo extends JPanel {
         grupoBotones.add(botonTrapecio);
         grupoBotones.add(botonCorazon);
         
-        botonLinea.setSelected(true);
+        botonDibujoLibre.setSelected(true);
 
         colorDeContorno = Color.BLACK;
         colorDeFondo = Color.WHITE;
